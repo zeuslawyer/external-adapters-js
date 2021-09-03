@@ -889,6 +889,10 @@
     },
     "ws": {}
   },
+  "terra": {
+    "http": {},
+    "ws": {}
+  },
   "tiingo": {
     "http": {
       "starter": {

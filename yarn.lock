@@ -3252,6 +3252,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@chainlink/terra-adapter@workspace:packages/targets/terra":
+  version: 0.0.0-use.local
+  resolution: "@chainlink/terra-adapter@workspace:packages/targets/terra"
+  dependencies:
+    "@chainlink/ea-bootstrap": "*"
+    "@chainlink/ea-test-helpers": "*"
+    "@chainlink/types": 0.0.1
+    "@terra-money/terra.js": ^2.0.0-beta.15
+    "@types/jest": ^26.0.22
+    "@types/node": ^14.14.35
+    async-mutex: ^0.3.1
+    tslib: ^2.1.0
+    typescript: ^4.2.3
+  languageName: unknown
+  linkType: soft
+
 "@chainlink/the-graph-adapter@workspace:packages/composites/the-graph":
   version: 0.0.0-use.local
   resolution: "@chainlink/the-graph-adapter@workspace:packages/composites/the-graph"
@@ -5629,6 +5645,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@terra-money/terra.js@npm:^2.0.0-beta.15":
+  version: 2.0.4
+  resolution: "@terra-money/terra.js@npm:2.0.4"
+  dependencies:
+    axios: ^0.21.1
+    bech32: ^2.0.0
+    bip32: ^2.0.6
+    bip39: ^3.0.3
+    bufferutil: ^4.0.3
+    decimal.js: ^10.2.1
+    jscrypto: ^1.0.1
+    readable-stream: ^3.6.0
+    secp256k1: ^4.0.2
+    tmp: ^0.2.1
+    utf-8-validate: ^5.0.5
+    ws: ^7.4.2
+  checksum: c44d9800f30f882715b0bf13f418f0c82d8954ef0547aa3511d7a905dac489cda6c44c6bd48c90f33cc210c87652283df15b2f4cc699e26e4b5679c1f1ecd126
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -5998,7 +6034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:26.0.24":
+"@types/jest@npm:26.0.24, @types/jest@npm:^26.0.22":
   version: 26.0.24
   resolution: "@types/jest@npm:26.0.24"
   dependencies:
@@ -6142,6 +6178,13 @@ __metadata:
   version: 12.20.18
   resolution: "@types/node@npm:12.20.18"
   checksum: 6727276c92bc2d8a76a26f94a611e572d021df018e3c95113e880fd783cdceb973eb0b4e73a7407543b2c4493ff9d6abfbdbf4b502d236f70bb2c17bbf00340e
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^14.14.35":
+  version: 14.17.14
+  resolution: "@types/node@npm:14.17.14"
+  checksum: 66ed675a324fdddc4f693f1b240c0d81a9f53e1c68f7de8b84d02d65c0b447f9fa30d318481d04e1502f68dd37091b5cadc59633b57246582ad25e3fa835cd7d
   languageName: node
   linkType: hard
 
@@ -7355,6 +7398,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"async-mutex@npm:^0.3.1":
+  version: 0.3.2
+  resolution: "async-mutex@npm:0.3.2"
+  dependencies:
+    tslib: ^2.3.1
+  checksum: 620b771dfdea1cad0a6b712915c31a1e3ca880a8cf1eae92b4590f435995e0260929c6ebaae0b9126b1456790ea498064b5bb9a506948cda760f48d3d0dcc4c8
+  languageName: node
+  linkType: hard
+
 "async@npm:^2.1.2, async@npm:^2.4.0":
   version: 2.6.3
   resolution: "async@npm:2.6.3"
@@ -7608,6 +7660,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bech32@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "bech32@npm:2.0.0"
+  checksum: fa15acb270b59aa496734a01f9155677b478987b773bf701f465858bf1606c6a970085babd43d71ce61895f1baa594cb41a2cd1394bd2c6698f03cc2d811300e
+  languageName: node
+  linkType: hard
+
 "before-after-hook@npm:^2.2.0":
   version: 2.2.2
   resolution: "before-after-hook@npm:2.2.2"
@@ -7701,7 +7760,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip32@npm:^2.0.4":
+"bip32@npm:^2.0.4, bip32@npm:^2.0.6":
   version: 2.0.6
   resolution: "bip32@npm:2.0.6"
   dependencies:
@@ -7729,7 +7788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bip39@npm:^3.0.2":
+"bip39@npm:^3.0.2, bip39@npm:^3.0.3":
   version: 3.0.4
   resolution: "bip39@npm:3.0.4"
   dependencies:
@@ -8107,7 +8166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bufferutil@npm:^4.0.1":
+"bufferutil@npm:^4.0.1, bufferutil@npm:^4.0.3":
   version: 4.0.3
   resolution: "bufferutil@npm:4.0.3"
   dependencies:
@@ -14118,6 +14177,15 @@ fsevents@~2.1.1:
   languageName: node
   linkType: hard
 
+"jscrypto@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "jscrypto@npm:1.0.2"
+  bin:
+    jscrypto: bin/cli.js
+  checksum: 3179dd391ca35910cb7d2176d44f185eca62fb70dd0020baa621b288b7014ae860f43bab3370e58ef8c4b24e24c703738ed6afd00a495c9f894f8b04f10e8800
+  languageName: node
+  linkType: hard
+
 "jsdom@npm:^16.6.0":
   version: 16.7.0
   resolution: "jsdom@npm:16.7.0"
@@ -19006,7 +19074,7 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"secp256k1@npm:^4.0.1":
+"secp256k1@npm:^4.0.1, secp256k1@npm:^4.0.2":
   version: 4.0.2
   resolution: "secp256k1@npm:4.0.2"
   dependencies:
@@ -20523,6 +20591,15 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
+"tmp@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "tmp@npm:0.2.1"
+  dependencies:
+    rimraf: ^3.0.0
+  checksum: 8b1214654182575124498c87ca986ac53dc76ff36e8f0e0b67139a8d221eaecfdec108c0e6ec54d76f49f1f72ab9325500b246f562b926f85bcdfca8bf35df9e
+  languageName: node
+  linkType: hard
+
 "tmpl@npm:1.0.x":
   version: 1.0.4
   resolution: "tmpl@npm:1.0.4"
@@ -20899,6 +20976,16 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
+typescript@^4.2.3:
+  version: 4.4.2
+  resolution: "typescript@npm:4.4.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 194e08e9d1971d667d6fd1a0554616b7022312a2319d70e81a64e502a265992061ee7817ed9a69b52bbabe7a9b85e7938cb8c11c433e40a516b277f8c4dacd51
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@4.3.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.3.4#~builtin<compat/typescript>":
   version: 4.3.5
   resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
@@ -20906,6 +20993,16 @@ resolve@1.17.0:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.2.3#~builtin<compat/typescript>":
+  version: 4.4.2
+  resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 11d6ab6e868117908c388401e2ac06d503c5c8709115ab80ee69a1a6352c1f98471d1e595636bfe6a2d6b20b03a44df6bb2d3d198cea97c0c328968cd18d2b70
   languageName: node
   linkType: hard
 
@@ -21174,7 +21271,7 @@ resolve@1.17.0:
   languageName: node
   linkType: hard
 
-"utf-8-validate@npm:^5.0.2":
+"utf-8-validate@npm:^5.0.2, utf-8-validate@npm:^5.0.5":
   version: 5.0.5
   resolution: "utf-8-validate@npm:5.0.5"
   dependencies:
@@ -22171,6 +22268,21 @@ resolve@1.17.0:
     safe-buffer: ~5.1.0
     ultron: ~1.1.0
   checksum: 20b7bf34bb88715b9e2d435b76088d770e063641e7ee697b07543815fabdb752335261c507a973955e823229d0af8549f39cc669825e5c8404aa0422615c81d9
+  languageName: node
+  linkType: hard
+
+"ws@npm:^7.4.2":
+  version: 7.5.4
+  resolution: "ws@npm:7.5.4"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 48582e4feb1fc6b6b977a0ee6136e5cd1c6a14bc5cb6ce5acf596652b34be757cdf0c225235b3263d56d057bc5d6e528dbe27fc88a3d09828aa803c6696f4b2c
   languageName: node
   linkType: hard
 

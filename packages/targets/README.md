@@ -9,3 +9,4 @@ External Adapters that write data to a location, often a blockchain.
 - [dYdX Stark](./dydx-stark/README.md)
 - [Ethereum Write](./ethwrite/README.md)
 - [Harmony](./harmony/README.md)
+- [Terra](./terra/README.md)
