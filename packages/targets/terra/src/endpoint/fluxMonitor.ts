@@ -1,16 +1,10 @@
 import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
-import {
-  LCDClient,
-  MnemonicKey,
-  MsgExecuteContract,
-  isTxError,
-  BlockTxBroadcastResult,
-  Wallet,
-} from '@terra-money/terra.js'
+import { LCDClient, MnemonicKey, MsgExecuteContract, isTxError } from '@terra-money/terra.js'
 import { Config, DEFAULT_GAS_PRICES } from '../config'
 import { ConfigResponse } from '../models/configResponse'
 import { SubmitMsg } from '../models/submitMsg'
+import { signAndBroadcast } from './txsend'
 
 export const NAME = 'fluxmonitor'
 
@@ -18,20 +12,6 @@ const customParams = {
   address: ['address'],
   roundId: ['round_id'],
   result: ['result'],
-}
-
-const signAndBroadcast = async (
-  wallet: Wallet,
-  client: LCDClient,
-  message: MsgExecuteContract,
-): Promise<BlockTxBroadcastResult> => {
-  const tx = await wallet.createAndSignTx({
-    msgs: [message],
-    gas: '300000',
-  })
-
-  const result = await client.tx.broadcast(tx)
-  return result
 }
 
 export const execute: ExecuteWithConfig<Config> = async (request, _, config) => {

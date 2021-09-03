@@ -1,6 +1,14 @@
 import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
-import { LCDClient, MnemonicKey, MsgExecuteContract, isTxError } from '@terra-money/terra.js'
+import {
+  LCDClient,
+  MnemonicKey,
+  MsgExecuteContract,
+  isTxError,
+  BlockTxBroadcastResult,
+  SyncTxBroadcastResult,
+  Wallet,
+} from '@terra-money/terra.js'
 import { Config, DEFAULT_GAS_PRICES } from '../config'
 
 export const NAME = 'txsend'
@@ -8,6 +16,22 @@ export const NAME = 'txsend'
 const customParams = {
   address: ['address'],
   msg: ['msg'],
+}
+
+export const signAndBroadcast = async (
+  wallet: Wallet,
+  client: LCDClient,
+  message: MsgExecuteContract,
+): Promise<BlockTxBroadcastResult | SyncTxBroadcastResult> => {
+  const tx = await wallet.createAndSignTx({
+    msgs: [message],
+    gas: '300000',
+  })
+
+  // const result = await client.tx.broadcast(tx) // braodcast waits for block inclusion
+  const result = await client.tx.broadcastSync(tx) // braodcastSync returns faster with only transaction hash
+
+  return result
 }
 
 export const execute: ExecuteWithConfig<Config> = async (request, _, config) => {
@@ -29,11 +53,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const execMsg = new MsgExecuteContract(wallet.key.accAddress, address, msg)
 
   try {
-    const tx = await wallet.createAndSignTx({
-      msgs: [execMsg],
-      gas: '300000',
-    })
-    const result = await terra.tx.broadcast(tx)
+    const result = await signAndBroadcast(wallet, terra, execMsg)
 
     if (isTxError(result)) {
       throw new Error(result.raw_log)
@@ -51,7 +71,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
     console.log(error)
     throw new AdapterError({
       jobRunID,
-      message: error.toString(),
+      message: error.stack,
       statusCode: 400,
     })
   }
