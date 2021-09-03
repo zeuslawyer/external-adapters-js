@@ -5338,7 +5338,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@terra-money/terra.js", "npm:2.0.4"],
             ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:14.17.14"],
-            ["async-mutex", "npm:0.3.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"]
           ],
@@ -10197,16 +10196,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/async-limiter-npm-1.0.1-7e6819bcdb-2b849695b4.zip/node_modules/async-limiter/",
           "packageDependencies": [
             ["async-limiter", "npm:1.0.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["async-mutex", [
-        ["npm:0.3.2", {
-          "packageLocation": "./.yarn/cache/async-mutex-npm-0.3.2-600f6c46a1-620b771dfd.zip/node_modules/async-mutex/",
-          "packageDependencies": [
-            ["async-mutex", "npm:0.3.2"],
-            ["tslib", "npm:2.3.1"]
           ],
           "linkType": "HARD",
         }]

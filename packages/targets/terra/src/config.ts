@@ -1,12 +1,10 @@
 import { util, Requester } from '@chainlink/ea-bootstrap'
-import { Config as DefaultConfig } from '@chainlink/types'
-
-export const NAME = 'terra'
+import types from '@chainlink/types'
 
 export const DEFAULT_ENDPOINT = 'txsend'
 export const DEFAULT_GAS_PRICES = 0.15
 
-export type Config = DefaultConfig & {
+export type Config = types.Config & {
   fcdUrl: string
   chainId: string
   mnemonic: string
