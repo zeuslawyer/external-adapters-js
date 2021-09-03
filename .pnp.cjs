@@ -5336,10 +5336,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/ea-test-helpers", "workspace:packages/core/test-helpers"],
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@terra-money/terra.js", "npm:2.0.4"],
-            ["@types/jest", "npm:26.0.24"],
-            ["@types/node", "npm:14.17.14"],
+            ["@types/jest", "npm:27.0.1"],
+            ["@types/node", "npm:14.17.7"],
             ["tslib", "npm:2.3.1"],
-            ["typescript", "patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"]
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
         }]
@@ -8674,13 +8674,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-12.20.18-8da5805f19-6727276c92.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:12.20.18"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:14.17.14", {
-          "packageLocation": "./.yarn/cache/@types-node-npm-14.17.14-9f52404552-66ed675a32.zip/node_modules/@types/node/",
-          "packageDependencies": [
-            ["@types/node", "npm:14.17.14"]
           ],
           "linkType": "HARD",
         }],
@@ -25318,13 +25311,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/typescript-patch-bb3b548ba1-bc2c4fdf0f.zip/node_modules/typescript/",
           "packageDependencies": [
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7", {
-          "packageLocation": "./.yarn/cache/typescript-patch-d3512b3735-11d6ab6e86.zip/node_modules/typescript/",
-          "packageDependencies": [
-            ["typescript", "patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"]
           ],
           "linkType": "HARD",
         }]
