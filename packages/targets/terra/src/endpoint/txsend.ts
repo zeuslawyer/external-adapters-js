@@ -28,9 +28,11 @@ export const signAndBroadcast = async (
     gas: '300000',
   })
 
-  // const result = await client.tx.broadcast(tx) // braodcast waits for block inclusion
-  const result = await client.tx.broadcastSync(tx) // braodcastSync returns faster with only transaction hash
+  const result = await client.tx.broadcast(tx) // braodcast waits for block inclusion
+  // const result = await client.tx.broadcastSync(tx) // braodcastSync returns faster with only transaction hash
+  console.log('Sent TX. Result: ')
 
+  console.log(result)
   return result
 }
 

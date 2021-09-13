@@ -2,10 +2,13 @@ import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig, ExecuteFactory } from '@chainlink/types'
 import { makeConfig, DEFAULT_ENDPOINT, Config } from './config'
 import { fluxMonitor, txsend } from './endpoint'
+import { Mutex } from 'async-mutex'
 
 const inputParams = {
   endpoint: false,
 }
+
+const mutex = new Mutex()
 
 export const execute: ExecuteWithConfig<Config> = async (request, context, config) => {
   const validator = new Validator(request, inputParams)
@@ -34,5 +37,6 @@ export const execute: ExecuteWithConfig<Config> = async (request, context, confi
 }
 
 export const makeExecute: ExecuteFactory<Config> = (config) => {
-  return async (request, context) => execute(request, context, config || makeConfig())
+  return async (request, context) =>
+    await mutex.runExclusive(async () => execute(request, context, config || makeConfig()))
 }
