@@ -1,7 +1,7 @@
 import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
 import { LCDClient, MnemonicKey, MsgExecuteContract, isTxError } from '@terra-money/terra.js'
-import { Config, DEFAULT_GAS_PRICES } from '../config'
+import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
 import { ConfigResponse } from '../models/configResponse'
 import { SubmitMsg } from '../models/submitMsg'
 import { signAndBroadcast } from './txsend'
@@ -46,8 +46,12 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const execMsg = new MsgExecuteContract(wallet.key.accAddress, address, submitMsg)
 
   try {
-    const result = await signAndBroadcast(wallet, terra, execMsg)
-
+    const result = await signAndBroadcast(
+      wallet,
+      terra,
+      execMsg,
+      config.gasLimit || DEFAULT_GAS_LIMIT,
+    )
     if (isTxError(result)) {
       throw new Error(result.raw_log)
     }

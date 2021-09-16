@@ -15,7 +15,6 @@ export const execute: ExecuteWithConfig<Config> = async (request, context, confi
   if (validator.error) throw validator.error
 
   Requester.logConfig(config)
-
   const jobRunID = validator.validated.id
   const endpoint = validator.validated.data.endpoint || DEFAULT_ENDPOINT
 

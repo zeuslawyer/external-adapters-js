@@ -9,7 +9,7 @@ import {
   SyncTxBroadcastResult,
   Wallet,
 } from '@terra-money/terra.js'
-import { Config, DEFAULT_GAS_PRICES } from '../config'
+import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
 
 export const NAME = 'txsend'
 
@@ -22,17 +22,23 @@ export const signAndBroadcast = async (
   wallet: Wallet,
   client: LCDClient,
   message: MsgExecuteContract,
+  gasLimit: string,
 ): Promise<BlockTxBroadcastResult | SyncTxBroadcastResult> => {
   const tx = await wallet.createAndSignTx({
     msgs: [message],
-    gas: '300000',
+    gas: gasLimit,
   })
 
   const result = await client.tx.broadcast(tx) // braodcast waits for block inclusion
   // const result = await client.tx.broadcastSync(tx) // braodcastSync returns faster with only transaction hash
-  console.log('Sent TX. Result: ')
+  console.log(`TX sent `)
+  console.log(`Message: `)
+  console.log(message)
 
+  console.log(`Result: `)
   console.log(result)
+  console.log('\n\n')
+
   return result
 }
 
@@ -55,7 +61,12 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const execMsg = new MsgExecuteContract(wallet.key.accAddress, address, msg)
 
   try {
-    const result = await signAndBroadcast(wallet, terra, execMsg)
+    const result = await signAndBroadcast(
+      wallet,
+      terra,
+      execMsg,
+      config.gasLimit || DEFAULT_GAS_LIMIT,
+    )
 
     if (isTxError(result)) {
       throw new Error(result.raw_log)

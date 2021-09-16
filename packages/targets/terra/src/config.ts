@@ -3,12 +3,14 @@ import types from '@chainlink/types'
 
 export const DEFAULT_ENDPOINT = 'txsend'
 export const DEFAULT_GAS_PRICES = 0.15
+export const DEFAULT_GAS_LIMIT = '300000'
 
 export type Config = types.Config & {
   fcdUrl: string
   chainId: string
   mnemonic: string
   gasPrices?: string
+  gasLimit?: string
 }
 
 export const makeConfig = (prefix?: string): Config => {
@@ -19,5 +21,6 @@ export const makeConfig = (prefix?: string): Config => {
     chainId: util.getRequiredEnv('CHAIN_ID', prefix),
     mnemonic: util.getRequiredEnv('MNEMONIC', prefix),
     gasPrices: util.getEnv('GAS_PRICES', prefix),
+    gasLimit: util.getEnv('GAS_LIMIT', prefix),
   }
 }
