@@ -1,6 +1,6 @@
 import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
-import { LCDClient, MnemonicKey, MsgExecuteContract, isTxError } from '@terra-money/terra.js'
+import { LCDClient, MnemonicKey, MsgExecuteContract } from '@terra-money/terra.js'
 import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
 import { ConfigResponse } from '../models/configResponse'
 import { SubmitMsg } from '../models/submitMsg'
@@ -52,9 +52,8 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
       execMsg,
       config.gasLimit || DEFAULT_GAS_LIMIT,
     )
-    if (isTxError(result)) {
-      throw new Error(result.raw_log)
-    }
+
+    //TODO: might be good to get the tx feedback and pass it to the CL node, probably through async tasks
 
     return Requester.success(
       jobRunID,

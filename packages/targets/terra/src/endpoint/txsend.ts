@@ -4,9 +4,7 @@ import {
   LCDClient,
   MnemonicKey,
   MsgExecuteContract,
-  isTxError,
-  BlockTxBroadcastResult,
-  SyncTxBroadcastResult,
+  AsyncTxBroadcastResult,
   Wallet,
 } from '@terra-money/terra.js'
 import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
@@ -23,14 +21,16 @@ export const signAndBroadcast = async (
   client: LCDClient,
   message: MsgExecuteContract,
   gasLimit: string,
-): Promise<BlockTxBroadcastResult | SyncTxBroadcastResult> => {
+): Promise<AsyncTxBroadcastResult> => {
   const tx = await wallet.createAndSignTx({
     msgs: [message],
     gas: gasLimit,
   })
 
-  const result = await client.tx.broadcast(tx) // braodcast waits for block inclusion
-  // const result = await client.tx.broadcastSync(tx) // braodcastSync returns faster with only transaction hash
+  // const result = await client.tx.broadcast(tx) // broadcast waits for block inclusion, but bloats the CL node tasks pipeline
+  // const result = await client.tx.broadcastSync(tx) // broadcastSync returns faster with only transaction hash, but nonce management isses
+  const result = await client.tx.broadcastAsync(tx) // broadcastAsync returns faster with only transaction hash, without issues
+
   console.log(`TX sent `)
   console.log(`Message: `)
   console.log(message)
@@ -67,10 +67,6 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
       execMsg,
       config.gasLimit || DEFAULT_GAS_LIMIT,
     )
-
-    if (isTxError(result)) {
-      throw new Error(result.raw_log)
-    }
 
     return Requester.success(
       jobRunID,
