@@ -14,7 +14,7 @@ const customParams = {
   result: ['result'],
 }
 
-let sequenceCounter: number
+let sequenceCounter: number | undefined
 
 export const execute: ExecuteWithConfig<Config> = async (request, _, config) => {
   const validator = new Validator(request, customParams)
@@ -68,8 +68,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
 
     if (isTxError(result)) {
       // resync just in case sequence counter is wrong, e.g a manual tx is sent from the same account
-      const account = await terra.auth.accountInfo(wallet.key.accAddress)
-      sequenceCounter = account.sequence
+      sequenceCounter = undefined
       throw new Error(result.raw_log)
     }
 

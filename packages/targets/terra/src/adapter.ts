@@ -18,7 +18,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, context, confi
   const jobRunID = validator.validated.id
   const endpoint = validator.validated.data.endpoint || DEFAULT_ENDPOINT
   console.log('Incoming request: ')
-  console.table(request)
+  console.log(request)
 
   switch (endpoint.toLowerCase()) {
     case txsend.NAME: {
