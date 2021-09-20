@@ -4,7 +4,7 @@ import {
   LCDClient,
   MnemonicKey,
   MsgExecuteContract,
-  AsyncTxBroadcastResult,
+  SyncTxBroadcastResult,
   Wallet,
 } from '@terra-money/terra.js'
 import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
@@ -21,15 +21,17 @@ export const signAndBroadcast = async (
   client: LCDClient,
   message: MsgExecuteContract,
   gasLimit: string,
-): Promise<AsyncTxBroadcastResult> => {
+  sequenceCounter?: number,
+): Promise<SyncTxBroadcastResult> => {
   const tx = await wallet.createAndSignTx({
     msgs: [message],
     gas: gasLimit,
+    sequence: sequenceCounter,
   })
 
   // const result = await client.tx.broadcast(tx) // broadcast waits for block inclusion, but bloats the CL node tasks pipeline
-  // const result = await client.tx.broadcastSync(tx) // broadcastSync returns faster with only transaction hash, but nonce management isses
-  const result = await client.tx.broadcastAsync(tx) // broadcastAsync returns faster with only transaction hash, without issues
+  const result = await client.tx.broadcastSync(tx) // broadcastSync returns faster with only transaction hash, but nonce management isses
+  // const result = await client.tx.broadcastAsync(tx) // broadcastAsync returns faster with only transaction hash, without issues
 
   console.log(`TX sent `)
   console.log(`Message: `)
