@@ -15,6 +15,7 @@ const customParams = {
 }
 
 let sequenceCounter: number | undefined
+let retries: number
 
 export const execute: ExecuteWithConfig<Config> = async (request, _, config) => {
   const validator = new Validator(request, customParams)
@@ -48,27 +49,44 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const execMsg = new MsgExecuteContract(wallet.key.accAddress, address, submitMsg)
 
   try {
-    if (sequenceCounter == null) {
-      const account = await terra.auth.accountInfo(wallet.key.accAddress)
-      sequenceCounter = account.sequence
-    } else {
-      sequenceCounter++
-    }
+    retries = 0
+    let result
+    do {
+      if (sequenceCounter == null) {
+        const account = await terra.auth.accountInfo(wallet.key.accAddress)
+        sequenceCounter = account.sequence
+      } else {
+        // we need not increment in case we retry with the same nonce
+        if (retries == 0) {
+          sequenceCounter++
+        }
+      }
 
-    console.log('Current sequence number: ')
-    console.log(sequenceCounter)
+      console.log('Current sequence number: ')
+      console.log(sequenceCounter)
 
-    const result = await signAndBroadcast(
-      wallet,
-      terra,
-      execMsg,
-      config.gasLimit || DEFAULT_GAS_LIMIT,
-      sequenceCounter,
-    )
+      result = await signAndBroadcast(
+        wallet,
+        terra,
+        execMsg,
+        config.gasLimit || DEFAULT_GAS_LIMIT,
+        sequenceCounter,
+      )
+
+      retries++
+      if (result.raw_log?.includes('sequence')) {
+        // if its account sequence mismatch error, then retrying with the same nonce is recommended, else resync
+        if (!result.raw_log.startsWith('account sequence mismatch')) {
+          sequenceCounter = undefined
+        }
+        console.log('Sequence error, retry: ', retries)
+      } else {
+        break
+      }
+      //TODO: export retries limit to env var
+    } while (retries <= 3)
 
     if (isTxError(result)) {
-      // resync just in case sequence counter is wrong, e.g a manual tx is sent from the same account
-      sequenceCounter = undefined
       throw new Error(result.raw_log)
     }
 
