@@ -87,6 +87,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
     } while (retries <= 3)
 
     if (isTxError(result)) {
+      sequenceCounter = undefined
       throw new Error(result.raw_log)
     }
 
