@@ -1,8 +1,14 @@
 import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
 import { LCDClient, MnemonicKey, MsgExecuteContract, isTxError } from '@terra-money/terra.js'
-import { Config, DEFAULT_GAS_PRICES, DEFAULT_GAS_LIMIT } from '../config'
-import { ConfigResponse } from '../models/configResponse'
+import {
+  Config,
+  DEFAULT_GAS_PRICES,
+  DEFAULT_GAS_LIMIT,
+  DEFAULT_DECIMALS,
+  DEFAULT_RETRIES,
+} from '../config'
+// import { ConfigResponse } from '../models/configResponse'
 import { SubmitMsg } from '../models/submitMsg'
 import { signAndBroadcast } from './txsend'
 
@@ -32,11 +38,13 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
     gasPrices: { uluna: config.gasPrices || DEFAULT_GAS_PRICES },
   })
 
-  const aggregatorConfig = await terra.wasm.contractQuery<ConfigResponse>(address, {
-    get_aggregator_config: {},
-  })
+  // const aggregatorConfig = await terra.wasm.contractQuery<ConfigResponse>(address, {
+  //   get_aggregator_config: {},
+  // })
 
-  const submission = decimalResult.toFixed(aggregatorConfig.decimals).replace('.', '')
+  const submission = decimalResult
+    .toFixed(Number(config.decimals || DEFAULT_DECIMALS))
+    .replace('.', '')
 
   const wallet = terra.wallet(new MnemonicKey({ mnemonic: config.mnemonic }))
 
@@ -62,7 +70,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
         }
       }
 
-      console.log('Current sequence number: ')
+      console.log('Sequence(nonce): ')
       console.log(sequenceCounter)
 
       result = await signAndBroadcast(
@@ -79,12 +87,11 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
         if (!result.raw_log.startsWith('account sequence mismatch')) {
           sequenceCounter = undefined
         }
-        console.log('Sequence error, retry: ', retries)
+        console.log('Sequence(nonce) error, retry #', retries)
       } else {
         break
       }
-      //TODO: export retries limit to env var
-    } while (retries <= 3)
+    } while (retries <= Number(config.retries || DEFAULT_RETRIES))
 
     if (isTxError(result)) {
       sequenceCounter = undefined
