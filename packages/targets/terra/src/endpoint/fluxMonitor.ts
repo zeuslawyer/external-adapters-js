@@ -62,7 +62,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
     do {
       if (sequenceCounter == null) {
         const account = await terra.auth.accountInfo(wallet.key.accAddress)
-        sequenceCounter = account.sequence
+        sequenceCounter = account.getSequenceNumber()
       } else {
         // we need not increment in case we retry with the same nonce
         if (retries == 0) {

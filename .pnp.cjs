@@ -5335,7 +5335,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/ea-bootstrap", "workspace:packages/core/bootstrap"],
             ["@chainlink/ea-test-helpers", "workspace:packages/core/test-helpers"],
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
-            ["@terra-money/terra.js", "npm:2.0.4"],
+            ["@terra-money/terra.js", "npm:2.1.2"],
             ["@types/jest", "npm:27.0.1"],
             ["@types/node", "npm:14.17.7"],
             ["async-mutex", "npm:0.3.2"],
@@ -7569,6 +7569,98 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@protobufjs/aspromise", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@protobufjs-aspromise-npm-1.1.2-71d00b938f-011fe7ef08.zip/node_modules/@protobufjs/aspromise/",
+          "packageDependencies": [
+            ["@protobufjs/aspromise", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/base64", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@protobufjs-base64-npm-1.1.2-cd8ca6814a-67173ac34d.zip/node_modules/@protobufjs/base64/",
+          "packageDependencies": [
+            ["@protobufjs/base64", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/codegen", [
+        ["npm:2.0.4", {
+          "packageLocation": "./.yarn/cache/@protobufjs-codegen-npm-2.0.4-36e188bbe6-59240c850b.zip/node_modules/@protobufjs/codegen/",
+          "packageDependencies": [
+            ["@protobufjs/codegen", "npm:2.0.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/eventemitter", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@protobufjs-eventemitter-npm-1.1.0-029cc7d431-0369163a3d.zip/node_modules/@protobufjs/eventemitter/",
+          "packageDependencies": [
+            ["@protobufjs/eventemitter", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/fetch", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@protobufjs-fetch-npm-1.1.0-ca857b7df4-3fce7e09eb.zip/node_modules/@protobufjs/fetch/",
+          "packageDependencies": [
+            ["@protobufjs/fetch", "npm:1.1.0"],
+            ["@protobufjs/aspromise", "npm:1.1.2"],
+            ["@protobufjs/inquire", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/float", [
+        ["npm:1.0.2", {
+          "packageLocation": "./.yarn/cache/@protobufjs-float-npm-1.0.2-5678f64d08-5781e12412.zip/node_modules/@protobufjs/float/",
+          "packageDependencies": [
+            ["@protobufjs/float", "npm:1.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/inquire", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@protobufjs-inquire-npm-1.1.0-3c7759e9ce-ca06f02eaf.zip/node_modules/@protobufjs/inquire/",
+          "packageDependencies": [
+            ["@protobufjs/inquire", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/path", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@protobufjs-path-npm-1.1.2-641d08de76-856eeb532b.zip/node_modules/@protobufjs/path/",
+          "packageDependencies": [
+            ["@protobufjs/path", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/pool", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@protobufjs-pool-npm-1.1.0-47a76f96a1-d6a34fbbd2.zip/node_modules/@protobufjs/pool/",
+          "packageDependencies": [
+            ["@protobufjs/pool", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@protobufjs/utf8", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/@protobufjs-utf8-npm-1.1.0-02c590807c-f9bf3163d1.zip/node_modules/@protobufjs/utf8/",
+          "packageDependencies": [
+            ["@protobufjs/utf8", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@reduxjs/toolkit", [
         ["npm:1.6.1", {
           "packageLocation": "./.yarn/cache/@reduxjs-toolkit-npm-1.6.1-a0999c8262-487e340036.zip/node_modules/@reduxjs/toolkit/",
@@ -8083,10 +8175,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@terra-money/terra.js", [
-        ["npm:2.0.4", {
-          "packageLocation": "./.yarn/cache/@terra-money-terra.js-npm-2.0.4-5a521b5b6e-c44d9800f3.zip/node_modules/@terra-money/terra.js/",
+        ["npm:2.1.2", {
+          "packageLocation": "./.yarn/cache/@terra-money-terra.js-npm-2.1.2-4c06502275-ec54f2cfd7.zip/node_modules/@terra-money/terra.js/",
           "packageDependencies": [
-            ["@terra-money/terra.js", "npm:2.0.4"],
+            ["@terra-money/terra.js", "npm:2.1.2"],
+            ["@terra-money/terra.proto", "npm:0.1.7"],
             ["axios", "npm:0.21.1"],
             ["bech32", "npm:2.0.0"],
             ["bip32", "npm:2.0.6"],
@@ -8094,11 +8187,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bufferutil", "npm:4.0.3"],
             ["decimal.js", "npm:10.3.1"],
             ["jscrypto", "npm:1.0.2"],
+            ["long", "npm:4.0.0"],
             ["readable-stream", "npm:3.6.0"],
             ["secp256k1", "npm:4.0.2"],
             ["tmp", "npm:0.2.1"],
             ["utf-8-validate", "npm:5.0.5"],
-            ["ws", "virtual:5a521b5b6efd8e4311846ddcb69b8bec36c66cf22e2ad5648020a33028449b2d5b8454b44fcb133a3d7ca17653539da17f98b06108342fde7750d99294e1de8d#npm:7.5.4"]
+            ["ws", "virtual:4c06502275f59792b3e73fe13a9a977da0921a623b8501d6d980fe41d15142cf47dcb1722602bd1c9e2d471ed3a10e19227551ee27db445b119baa5e894289d1#npm:7.5.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@terra-money/terra.proto", [
+        ["npm:0.1.7", {
+          "packageLocation": "./.yarn/cache/@terra-money-terra.proto-npm-0.1.7-77d92ea197-c6ad15f559.zip/node_modules/@terra-money/terra.proto/",
+          "packageDependencies": [
+            ["@terra-money/terra.proto", "npm:0.1.7"],
+            ["google-protobuf", "npm:3.18.0"],
+            ["long", "npm:4.0.0"],
+            ["protobufjs", "npm:6.11.2"]
           ],
           "linkType": "HARD",
         }]
@@ -8611,6 +8717,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/long", [
+        ["npm:4.0.1", {
+          "packageLocation": "./.yarn/cache/@types-long-npm-4.0.1-022c8b6e77-ff9653c33f.zip/node_modules/@types/long/",
+          "packageDependencies": [
+            ["@types/long", "npm:4.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/lru-cache", [
         ["npm:5.1.1", {
           "packageLocation": "./.yarn/cache/@types-lru-cache-npm-5.1.1-46aaa305fe-e1d6c0085f.zip/node_modules/@types/lru-cache/",
@@ -8689,6 +8804,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-16.6.1-df37ae7d3a-c13aa0da0c.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:16.6.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:16.9.6", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-16.9.6-c95978d15b-1c11ff4b58.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:16.9.6"]
           ],
           "linkType": "HARD",
         }]
@@ -15465,6 +15587,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["google-protobuf", [
+        ["npm:3.18.0", {
+          "packageLocation": "./.yarn/cache/google-protobuf-npm-3.18.0-6068074308-0838d000c4.zip/node_modules/google-protobuf/",
+          "packageDependencies": [
+            ["google-protobuf", "npm:3.18.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["got", [
         ["npm:7.1.0", {
           "packageLocation": "./.yarn/cache/got-npm-7.1.0-83d1107046-0270472a38.zip/node_modules/got/",
@@ -19095,6 +19226,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["long", [
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/long-npm-4.0.0-ecd96a31ed-16afbe8f74.zip/node_modules/long/",
+          "packageDependencies": [
+            ["long", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["longest", [
         ["npm:1.0.1", {
           "packageLocation": "./.yarn/cache/longest-npm-1.0.1-78ef3a3705-21717f9567.zip/node_modules/longest/",
@@ -21867,6 +22007,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/propagate-npm-2.0.1-2074bf76d3-c4febaee2b.zip/node_modules/propagate/",
           "packageDependencies": [
             ["propagate", "npm:2.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["protobufjs", [
+        ["npm:6.11.2", {
+          "packageLocation": "./.yarn/unplugged/protobufjs-npm-6.11.2-9b422ce98e/node_modules/protobufjs/",
+          "packageDependencies": [
+            ["protobufjs", "npm:6.11.2"],
+            ["@protobufjs/aspromise", "npm:1.1.2"],
+            ["@protobufjs/base64", "npm:1.1.2"],
+            ["@protobufjs/codegen", "npm:2.0.4"],
+            ["@protobufjs/eventemitter", "npm:1.1.0"],
+            ["@protobufjs/fetch", "npm:1.1.0"],
+            ["@protobufjs/float", "npm:1.0.2"],
+            ["@protobufjs/inquire", "npm:1.1.0"],
+            ["@protobufjs/path", "npm:1.1.2"],
+            ["@protobufjs/pool", "npm:1.1.0"],
+            ["@protobufjs/utf8", "npm:1.1.0"],
+            ["@types/long", "npm:4.0.1"],
+            ["@types/node", "npm:16.9.6"],
+            ["long", "npm:4.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -26719,10 +26881,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["virtual:5a521b5b6efd8e4311846ddcb69b8bec36c66cf22e2ad5648020a33028449b2d5b8454b44fcb133a3d7ca17653539da17f98b06108342fde7750d99294e1de8d#npm:7.5.4", {
-          "packageLocation": "./.yarn/__virtual__/ws-virtual-faaac9db48/0/cache/ws-npm-7.5.4-6e0fe1400d-48582e4feb.zip/node_modules/ws/",
+        ["virtual:4c06502275f59792b3e73fe13a9a977da0921a623b8501d6d980fe41d15142cf47dcb1722602bd1c9e2d471ed3a10e19227551ee27db445b119baa5e894289d1#npm:7.5.4", {
+          "packageLocation": "./.yarn/__virtual__/ws-virtual-f15416034d/0/cache/ws-npm-7.5.4-6e0fe1400d-48582e4feb.zip/node_modules/ws/",
           "packageDependencies": [
-            ["ws", "virtual:5a521b5b6efd8e4311846ddcb69b8bec36c66cf22e2ad5648020a33028449b2d5b8454b44fcb133a3d7ca17653539da17f98b06108342fde7750d99294e1de8d#npm:7.5.4"],
+            ["ws", "virtual:4c06502275f59792b3e73fe13a9a977da0921a623b8501d6d980fe41d15142cf47dcb1722602bd1c9e2d471ed3a10e19227551ee27db445b119baa5e894289d1#npm:7.5.4"],
             ["@types/bufferutil", null],
             ["@types/utf-8-validate", null],
             ["bufferutil", "npm:4.0.3"],
