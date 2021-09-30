@@ -105,38 +105,45 @@ export const makeWSHandler = (config?: Config): MakeWSHandler => {
         return isDataSubscriptionMsg(message)
       },
       onConnectChain: [
-        () => [
-          {
-            id: '1',
-            version: '1.0',
-            minimumVersion: '1.0',
-            channel: '/meta/handshake',
-            supportedConnectionTypes: ['websocket', 'long-polling', 'callback-polling'],
-            advice: {
-              timeout: 60000,
-              interval: 0,
+        {
+          getMessage: () => [
+            {
+              id: '1',
+              version: '1.0',
+              minimumVersion: '1.0',
+              channel: '/meta/handshake',
+              supportedConnectionTypes: ['websocket', 'long-polling', 'callback-polling'],
+              advice: {
+                timeout: 60000,
+                interval: 0,
+              },
             },
-          },
-        ],
-        (_, prevWsResponse, connectionParams) => [
-          {
-            id: '2',
-            channel: '/meta/connect',
-            connectionType: 'websocket',
-            advice: {
-              timeout: 0,
+          ],
+        },
+        {
+          getMessage: (_, prevWsResponse, connectionParams) => [
+            {
+              id: '2',
+              channel: '/meta/connect',
+              connectionType: 'websocket',
+              advice: {
+                timeout: 0,
+              },
+              clientId: prevWsResponse[0].clientId || connectionParams.clientId,
             },
-            clientId: prevWsResponse[0].clientId || connectionParams.clientId,
-          },
-        ],
-        (_, prevWsResponse, connectionParams) => [
-          {
-            id: '3',
-            channel: '/meta/connect',
-            connectionType: 'websocket',
-            clientId: prevWsResponse[0].clientId || connectionParams.clientId,
-          },
-        ],
+          ],
+        },
+        {
+          shouldNotWaitForResponse: true,
+          getMessage: (_, prevWsResponse, connectionParams) => [
+            {
+              id: '3',
+              channel: '/meta/connect',
+              connectionType: 'websocket',
+              clientId: prevWsResponse[0].clientId || connectionParams.clientId,
+            },
+          ],
+        },
       ],
     }
   }

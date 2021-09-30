@@ -84,7 +84,7 @@ export const subscribeReadyEpic: Epic<AnyAction, AnyAction, { ws: RootState }, a
       const subscriptionPayloads: WSSubscriptionPayload[] = []
       await separateBatches(request, async (singleInput: AdapterRequest) => {
         const subscriptionMsg = wsHandler.onConnectChain
-          ? wsHandler.onConnectChain[0]()
+          ? wsHandler.onConnectChain[0].getMessage()
           : wsHandler.subscribe(singleInput)
         if (!subscriptionMsg) return
         const subscriptionPayload: WSSubscriptionPayload = {
@@ -438,7 +438,8 @@ export const connectEpic: Epic<AnyAction, AnyAction, { ws: RootState }, any> = (
             state.ws.connections.all[payload.connectionInfo.key].connectionParams
           const subscriptionMsg = onConnectChainFinished
             ? wsHandler.subscribe(input)
-            : wsHandler.onConnectChain[onConnectIdx](input, message, connectionInStore)
+            : wsHandler.onConnectChain[onConnectIdx].getMessage(input, message, connectionInStore)
+
           const subscriptionPayload: WSSubscriptionPayload = {
             connectionInfo: {
               key: config.connectionInfo.key,
@@ -448,11 +449,29 @@ export const connectEpic: Epic<AnyAction, AnyAction, { ws: RootState }, any> = (
             input,
             context,
           }
+
           if (onConnectChainFinished) {
             return of(
               subscribeRequested(subscriptionPayload),
               onConnectComplete(subscriptionPayload),
             )
+          }
+          const shouldNotWaitForResponse =
+            wsHandler.onConnectChain[onConnectIdx].shouldNotWaitForResponse
+          if (shouldNotWaitForResponse) {
+            wsSubject.next(subscriptionMsg)
+            const nextConnectIdx = onConnectIdx + 1
+            const hasChainFinished = nextConnectIdx >= wsHandler.onConnectChain.length
+            const nextSubscriptionMessage = hasChainFinished
+              ? wsHandler.subscribe(input)
+              : wsHandler.onConnectChain[onConnectIdx].getMessage(input, message, connectionInStore)
+            subscriptionPayload.subscriptionMsg = nextSubscriptionMessage
+            if (hasChainFinished) {
+              return of(
+                subscribeRequested(subscriptionPayload),
+                onConnectComplete(subscriptionPayload),
+              )
+            }
           }
           return of(subscribeRequested(subscriptionPayload))
         }),

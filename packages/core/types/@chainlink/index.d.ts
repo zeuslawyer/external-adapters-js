@@ -191,11 +191,10 @@ declare module '@chainlink/types' {
     // Hook to send a message after connection
     onConnect?: (input: AdapterRequest) => any
     // Hook to send chain of onConnect messages
-    onConnectChain?: ((
-      input?: AdapterRequest,
-      prevWsResponse?: any,
-      connectionParams?: any,
-    ) => void)[]
+    onConnectChain?: {
+      shouldNotWaitForResponse?: boolean
+      getMessage: (input?: AdapterRequest, prevWsResponse?: any, connectionParams?: any) => void
+    }[]
     // Get the subscription message necessary to subscribe to the feed channel
     subscribe: (input: AdapterRequest) => any | undefined
     // Modify subscription payload before sending to WS

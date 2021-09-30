@@ -73,7 +73,6 @@ export const connectionsReducer = createReducer<ConnectionsState>(
       const currentState = state.all[key]
       state.all[key] = {
         ...state.all[key],
-        requestId: state.all[key].requestId + 1,
         queueSubscriptionMsgs: currentState.hasOnConnectChainFinished
           ? []
           : [...currentState.queueSubscriptionMsgs, action.payload.subscriptionMsg],
