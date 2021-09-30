@@ -89,6 +89,10 @@ export const onConnectComplete = createAction(
   'WS/ON_CONNECT_COMPLETE',
   asAction<WSSubscriptionPayload>(),
 )
+export const sendQueuedSubscriptions = createAction(
+  'WS/SEND_QUEUEd_SUBSCRIPTIONS',
+  asAction<WSSubscriptionPayload>(),
+)
 
 /** SUBSCRIPTIONS */
 export interface WSSubscriptionPayload {

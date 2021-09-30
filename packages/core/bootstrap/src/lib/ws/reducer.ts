@@ -30,6 +30,8 @@ export interface ConnectionsState {
         [T: string]: string
       }
       requestId: number
+      hasOnConnectChainFinished?: boolean
+      queueSubscriptionMsgs: any[]
     }
   }
 }
@@ -39,17 +41,26 @@ const initConnectionsState: ConnectionsState = { total: 0, all: {} }
 export const connectionsReducer = createReducer<ConnectionsState>(
   initConnectionsState,
   (builder) => {
-    builder.addCase(actions.saveOnConnectMessage, (state, action) => {
-      const { connectionKey, message } = action.payload
-      state.all[connectionKey] = {
-        ...state.all[connectionKey],
-        connectionParams: message,
+    builder.addCase(actions.onConnectComplete, (state, action) => {
+      const key = action.payload.connectionInfo.key
+      if (!state.all[key]) return
+      state.all[key] = {
+        ...state.all[key],
+        hasOnConnectChainFinished: true,
       }
-    })
+    }),
+      builder.addCase(actions.saveOnConnectMessage, (state, action) => {
+        const { connectionKey, message } = action.payload
+        state.all[connectionKey] = {
+          ...state.all[connectionKey],
+          connectionParams: message,
+        }
+      })
     builder.addCase(actions.connectFulfilled, (state, action) => {
       // Add connection
       const { key } = action.payload.config.connectionInfo
       state.all[key] = {
+        ...state.all[key],
         active: true,
         connecting: 0,
         wasEverConnected: true,
@@ -59,9 +70,25 @@ export const connectionsReducer = createReducer<ConnectionsState>(
     builder.addCase(actions.subscribeRequested, (state, action) => {
       const key = action.payload.connectionInfo.key
       if (!state.all[key]) return
+      const currentState = state.all[key]
       state.all[key] = {
         ...state.all[key],
         requestId: state.all[key].requestId + 1,
+        queueSubscriptionMsgs: currentState.hasOnConnectChainFinished
+          ? []
+          : [...currentState.queueSubscriptionMsgs, action.payload.subscriptionMsg],
+      }
+    })
+    builder.addCase(actions.subscribeFulfilled, (state, action) => {
+      const key = action.payload.connectionInfo.key
+      if (!state.all[key]) return
+      state.all[key] = {
+        ...state.all[key],
+        requestId: state.all[key].requestId + 1,
+        queueSubscriptionMsgs: [
+          ...state.all[key].queueSubscriptionMsgs,
+          action.payload.subscriptionMsg,
+        ],
       }
     })
     builder.addCase(actions.connectRequested, (state, action) => {
@@ -74,6 +101,8 @@ export const connectionsReducer = createReducer<ConnectionsState>(
         active: false,
         connecting: isConnecting ? state.all[key].connecting + 1 : 1,
         requestId: 0,
+        hasOnConnectChainFinished: false,
+        queueSubscriptionMsgs: [],
       }
     })
 
