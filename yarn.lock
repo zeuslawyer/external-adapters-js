@@ -3479,6 +3479,7 @@ __metadata:
     "@chainlink/sochain-adapter": "workspace:*"
     "@chainlink/types": "workspace:*"
     "@chainlink/wbtc-address-set-adapter": "workspace:*"
+    "@chainlink/wrapped-adapter": "workspace:*"
     "@types/jest": 27.0.3
     "@types/node": 14.17.21
     decimal.js: ^10.3.1
@@ -3998,7 +3999,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@chainlink/wrapped-adapter@*, @chainlink/wrapped-adapter@workspace:packages/sources/wrapped":
+"@chainlink/wrapped-adapter@*, @chainlink/wrapped-adapter@workspace:*, @chainlink/wrapped-adapter@workspace:packages/sources/wrapped":
   version: 0.0.0-use.local
   resolution: "@chainlink/wrapped-adapter@workspace:packages/sources/wrapped"
   dependencies:
