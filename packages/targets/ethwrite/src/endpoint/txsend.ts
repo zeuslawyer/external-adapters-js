@@ -42,12 +42,14 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const dataType = validator.validated.data.dataType
   // Prioritize data coming from a previous adapter (result),
   // but allow dataToSend to be used if specified
-  const dataToSend = validator.validated.data.result || validator.validated.data.dataToSend || ''
+  let dataToSend = validator.validated.data.result || validator.validated.data.dataToSend || ''
   // Ensure we use only 4 bytes for the functionId
   let transactionData
   if (dataType) {
     transactionData = functionId.substring(0, 10) + encode(dataType, dataToSend)
   } else {
+    dataToSend =
+      dataToSend.substring(0, 2) == '0x' ? dataToSend.substring(2, dataToSend.length) : dataToSend
     transactionData = functionId.substring(0, 10) + dataToSend
   }
 
