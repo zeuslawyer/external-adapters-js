@@ -56,6 +56,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const transaction = {
     to: externalAddress,
     data: transactionData,
+    value: 0,
   }
 
   try {
