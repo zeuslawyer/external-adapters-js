@@ -24,6 +24,7 @@ const customParams = {
   dataType: false,
   result: false,
   dataToSend: false,
+  value: false,
   gasLimit: false,
 }
 
@@ -40,6 +41,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const externalAddress = validator.validated.data.exAddr
   const functionId = validator.validated.data.funcId || getUint256
   const gasLimit = validator.validated.data.gasLimit || 1000000
+  const value = validator.validated.data.value || 0
   // Passing this optionally, in case the data is not encrypted from the previous step
   const dataType = validator.validated.data.dataType
   // Prioritize data coming from a previous adapter (result),
@@ -58,7 +60,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   const transaction = {
     to: externalAddress,
     data: transactionData,
-    value: 0,
+    value,
     gasLimit,
   }
 
