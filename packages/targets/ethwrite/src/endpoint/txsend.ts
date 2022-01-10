@@ -66,9 +66,9 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
 
   try {
     const tx = await wallet.sendTransaction(transaction)
-    Logger.info(`Response tx: ${JSON.stringify(tx)}`)
+    Logger.info(`Response tx: ${tx.hash}`)
     return Requester.success(jobRunID, {
-      data: { success: true },
+      data: tx.hash,
       status: 200,
     })
   } catch (e) {
