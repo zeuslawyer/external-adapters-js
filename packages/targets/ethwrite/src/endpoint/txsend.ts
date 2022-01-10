@@ -67,7 +67,7 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
   try {
     const tx = await wallet.sendTransaction(transaction)
     return Requester.success(jobRunID, {
-      data: tx,
+      data: tx || { success: true },
       status: 200,
     })
   } catch (e) {
