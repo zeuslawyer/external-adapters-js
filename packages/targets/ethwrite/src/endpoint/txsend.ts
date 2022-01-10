@@ -1,4 +1,4 @@
-import { Requester, Validator, AdapterError } from '@chainlink/ea-bootstrap'
+import { Requester, Validator, AdapterError, Logger } from '@chainlink/ea-bootstrap'
 import { ExecuteWithConfig } from '@chainlink/types'
 import { ethers } from 'ethers'
 import { Config } from '../config'
@@ -66,8 +66,9 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
 
   try {
     const tx = await wallet.sendTransaction(transaction)
+    Logger.info(`Response tx: ${tx}`)
     return Requester.success(jobRunID, {
-      data: tx || { success: true },
+      data: { success: true },
       status: 200,
     })
   } catch (e) {
