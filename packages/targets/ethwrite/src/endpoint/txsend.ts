@@ -57,11 +57,14 @@ export const execute: ExecuteWithConfig<Config> = async (request, _, config) => 
     transactionData = functionId.substring(0, 10) + dataToSend
   }
 
+  const nonce = await provider.getTransactionCount(wallet.address, 'pending')
+
   const transaction = {
     to: externalAddress,
     data: transactionData,
     value,
     gasLimit,
+    nonce,
   }
 
   try {
