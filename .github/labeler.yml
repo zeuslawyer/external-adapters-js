@@ -1,0 +1,6 @@
+# GitHub Action - Labeler: https://github.com/marketplace/actions/labeler
+
+adapter-change:
+  - packages/sources/*/src/*
+  - packages/composites/*/src/*
+  - packages/targets/*/src/*
