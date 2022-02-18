@@ -24,6 +24,7 @@
     "express-rate-limit": "^5.5.0",
     "express-slow-down": "^1.4.0",
     "fast-redact": "^3.0.1",
+    "fastify": "^3.27.1",
     "lodash": "^4.17.21",
     "lru-cache": "^6.0.0",
     "object-hash": "^2.2.0",

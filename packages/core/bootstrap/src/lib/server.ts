@@ -1,25 +1,27 @@
-import { AdapterContext, Execute, Middleware } from '@chainlink/types'
-import express from 'express'
-import http from 'http'
-import slowDown from 'express-slow-down'
-import rateLimit from 'express-rate-limit'
+import { AdapterContext, Execute, Middleware, AdapterRequest } from '@chainlink/types'
+// import express from 'express'
+// import http from 'http'
+// import slowDown from 'express-slow-down'
+// import rateLimit from 'express-rate-limit'
+import Fastify, { FastifyInstance } from 'fastify'
 import { join } from 'path'
 import * as client from 'prom-client'
 import { executeSync, storeSlice, withMiddleware } from '../index'
 import { defaultOptions } from './middleware/cache'
 import { loadTestPayload } from './config/test-payload-loader'
-import {
-  HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE,
-  HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE_MESSAGE,
-} from './errors'
+// import {
+//   HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE,
+//   HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE_MESSAGE,
+// } from './errors'
 import { logger } from './modules'
-import { METRICS_ENABLED, httpRateLimit, setupMetrics } from './metrics'
+import { METRICS_ENABLED, setupMetrics } from './metrics'
 import { get as getRateLimitConfig } from './middleware/rate-limit/config'
 import { toObjectWithNumbers } from './util'
 import { warmupShutdown } from './middleware/cache-warmer/actions'
-import { AddressInfo } from 'net'
 
-const app = express()
+const app = Fastify({
+  logger: false,
+})
 const version = process.env.npm_package_version
 const port = process.env.EA_PORT || 8080
 const baseUrl = process.env.BASE_URL || '/'
@@ -30,7 +32,7 @@ export const CONTENT_TYPE_TEXT_PLAIN = 'text/plain'
 
 export const initHandler =
   (adapterContext: AdapterContext, execute: Execute, middleware: Middleware[]) =>
-  async (): Promise<http.Server> => {
+  async (): Promise<FastifyInstance> => {
     const name = adapterContext.name || ''
     const context: AdapterContext = {
       name,
@@ -50,23 +52,28 @@ export const initHandler =
       setupMetricsServer(name)
     }
 
-    initExpressMiddleware(app)
+    // initExpressMiddleware(app)
 
     const executeWithMiddleware = await withMiddleware(execute, context, middleware)
 
-    app.post(baseUrl, (req, res) => {
-      if (!req.is(CONTENT_TYPE_APPLICATION_JSON)) {
-        return res
-          .status(HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE)
-          .send(HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE_MESSAGE)
-      }
-      req.body.data = {
-        ...(req.body.data || {}),
+    app.post(baseUrl, async (req, res) => {
+      // if (!req.is(CONTENT_TYPE_APPLICATION_JSON)) {
+      //   return res
+      //     .status(HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE)
+      //     .send(HTTP_ERROR_UNSUPPORTED_MEDIA_TYPE_MESSAGE)
+      // }
+      ;(req.body as AdapterRequest).data = {
+        ...((req.body as AdapterRequest).data || {}),
         ...toObjectWithNumbers(req.query),
       }
-      return executeSync(req.body, executeWithMiddleware, context, (status, result) => {
-        res.status(status).json(result)
-      })
+      return executeSync(
+        req.body as AdapterRequest,
+        executeWithMiddleware,
+        context,
+        (status, result) => {
+          res.code(status).send(result)
+        },
+      )
     })
 
     app.get(join(baseUrl, 'health'), async (_, res) => {
@@ -115,21 +122,28 @@ export const initHandler =
       process.exit()
     })
 
-    return new Promise((resolve) => {
-      const server = app.listen(port, () => {
-        server.on('close', () => {
-          storeSlice('cacheWarmer').dispatch(warmupShutdown())
-          context.cache?.instance?.close()
-        })
+    app.addHook('onClose', async () => {
+      storeSlice('cacheWarmer').dispatch(warmupShutdown())
+      context.cache?.instance?.close()
+    })
 
-        logger.info(`Listening on port ${(server.address() as AddressInfo).port}!`)
-        resolve(server)
+    return new Promise((resolve) => {
+      app.listen(port, '0.0.0.0', function (_, address) {
+        // if (err) {
+        //   fastify.log.error(err)
+        //   process.exit(1)
+        // }
+        logger.info(`Listening on port ${address}!`)
+
+        resolve(app)
       })
     })
   }
 
 function setupMetricsServer(name: string) {
-  const metricsApp = express()
+  const metricsApp = Fastify({
+    logger: false,
+  })
   const metricsPort = process.env.METRICS_PORT || 9080
   const endpoint = process.env.METRICS_USE_BASE_URL ? join(baseUrl, 'metrics') : '/metrics'
 
@@ -143,36 +157,36 @@ function setupMetricsServer(name: string) {
   metricsApp.listen(metricsPort, () => logger.info(`Monitoring listening on port ${metricsPort}!`))
 }
 
-const windowMs = 1000 * 5
-const max = parseInt(process.env.SERVER_RATE_LIMIT_MAX || '250') // default to 250 req / 5 seconds max
-const delayAfter = max * (Number(process.env.SERVER_SLOW_DOWN_AFTER_FACTOR) || 0.8) // we start slowing down requests when we reach 80% of our max limit for the current interval
-const delayMs = parseInt(process.env.SERVER_SLOW_DOWN_DELAY_MS || '500') // default to slowing down each request by 500ms
+// const windowMs = 1000 * 5
+// const max = parseInt(process.env.SERVER_RATE_LIMIT_MAX || '250') // default to 250 req / 5 seconds max
+// const delayAfter = max * (Number(process.env.SERVER_SLOW_DOWN_AFTER_FACTOR) || 0.8) // we start slowing down requests when we reach 80% of our max limit for the current interval
+// const delayMs = parseInt(process.env.SERVER_SLOW_DOWN_DELAY_MS || '500') // default to slowing down each request by 500ms
 
-function initExpressMiddleware(app: express.Express) {
-  app.set('trust proxy', 1)
+// function initExpressMiddleware(app: express.Express) {
+//   app.set('trust proxy', 1)
 
-  const rateLimiter = rateLimit({
-    windowMs,
-    max, // limit each IP's requests per windowMs
-    keyGenerator: () => '*', // use one key for all incoming requests
-    handler: ((req, res, next) => {
-      if (req.url === '/health') {
-        next()
-      } else {
-        httpRateLimit.inc()
-        res.status(429).send('Too many requests, please try again later.')
-      }
-    }) as express.RequestHandler,
-  })
-  app.use(rateLimiter)
+//   const rateLimiter = rateLimit({
+//     windowMs,
+//     max, // limit each IP's requests per windowMs
+//     keyGenerator: () => '*', // use one key for all incoming requests
+//     handler: ((req, res, next) => {
+//       if (req.url === '/health') {
+//         next()
+//       } else {
+//         httpRateLimit.inc()
+//         res.status(429).send('Too many requests, please try again later.')
+//       }
+//     }) as express.RequestHandler,
+//   })
+//   app.use(rateLimiter)
 
-  const speedLimiter = slowDown({
-    windowMs,
-    delayAfter,
-    delayMs,
-    keyGenerator: () => '*', // use one key for all incoming requests
-  })
-  app.use(speedLimiter)
+//   const speedLimiter = slowDown({
+//     windowMs,
+//     delayAfter,
+//     delayMs,
+//     keyGenerator: () => '*', // use one key for all incoming requests
+//   })
+//   app.use(speedLimiter)
 
-  app.use(express.json({ limit: '1mb' }))
-}
+//   app.use(express.json({ limit: '1mb' }))
+// }
