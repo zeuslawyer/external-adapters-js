@@ -1,5 +1,4 @@
 import axios from 'axios-observable'
-import { transformAndValidateSync } from 'class-transformer-validator'
 import { retryBackoff } from 'backoff-rxjs'
 import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
@@ -10,25 +9,53 @@ export class ReferenceContractConfig {
   name: string
   contractVersion: number
   address: string
-  data: Record<string, unknown>
+  data: Record<string, any>
   nodes: FeedNode[]
   precision: number
   deviationThreshold: number
   symbol: string
   path: string
   status: string
+  category: string
 
-  constructor() {
-    this.name = ''
-    this.contractVersion = 0
-    this.address = ''
-    this.deviationThreshold = 0
-    this.data = {}
-    this.nodes = []
-    this.precision = 8
-    this.symbol = ''
-    this.path = ''
-    this.status = ''
+  constructor(input: Record<string, unknown>) {
+    const ValidationError = (param: string) => {
+      Error(`Contract config "${param}" param is missing or incorrect type`)
+    }
+
+    if (typeof input?.name !== 'string') throw ValidationError('name')
+    else this.name = input.name
+
+    if (typeof input?.contractVersion !== 'number') throw ValidationError('contractVersion')
+    this.contractVersion = input.contractVersion
+
+    if (typeof input?.address !== 'string') throw ValidationError('address')
+    this.address = input.address
+
+    if (typeof input?.deviationThreshold !== 'number') throw ValidationError('deviationThreshold')
+    this.deviationThreshold = input.deviationThreshold
+
+    if (typeof input?.data !== 'object' || Array.isArray(input?.data) || input?.data === null)
+      throw ValidationError('data')
+    this.data = input.data
+
+    if (!Array.isArray(input?.nodes)) throw ValidationError('nodes')
+    this.nodes = input.nodes.map((node: any) => new FeedNode(node))
+
+    if (typeof input?.precision !== 'number') throw ValidationError('precision')
+    this.precision = input.precision
+
+    if (typeof input?.symbol !== 'string') throw ValidationError('symbol')
+    this.symbol = input.symbol
+
+    if (typeof input?.path !== 'string') throw ValidationError('path')
+    this.path = input.path
+
+    if (typeof input?.status !== 'string') throw ValidationError('status')
+    this.status = input.status
+
+    if (typeof input?.category !== 'string') throw ValidationError('category')
+    this.category = input.category
   }
 }
 
@@ -36,10 +63,23 @@ export class FeedNode {
   name: string
   address: string
   dataProviders: string[]
-  constructor() {
-    this.name = ''
-    this.address = ''
-    this.dataProviders = []
+  constructor(input: any) {
+    const ValidationError = (param: string) => {
+      Error(`Feed node "${param}" param is missing or incorrect type`)
+    }
+
+    if (typeof input?.name !== 'string') throw ValidationError('name')
+    else this.name = input.name
+
+    if (typeof input?.address !== 'string') throw ValidationError('address')
+    this.address = input.address
+
+    if (
+      !Array.isArray(input?.dataProviders) ||
+      input.dataProviders.some((dp: unknown) => typeof dp !== 'string')
+    )
+      throw ValidationError('dataProviders')
+    this.dataProviders = input.dataProviders
   }
 }
 
@@ -108,9 +148,7 @@ export const fetchConfigFromUrl = (
  * @returns {ReferenceContractConfig[]} The verified input as a config array
  */
 export const parseConfig = (rawConfig: Record<string, unknown>[]): ReferenceContractConfig[] => {
-  return transformAndValidateSync(ReferenceContractConfig, rawConfig, {
-    validator: { forbidUnknownValues: true },
-  })
+  return rawConfig.map((rc) => new ReferenceContractConfig(rc))
 }
 
 /**
@@ -181,7 +219,7 @@ const newConfigWithoutNodes = (feedConfig: ReferenceContractConfig): ReferenceCo
 }
 
 const newNodeWithoutAdapters = (feedNode: FeedNode): FeedNode => {
-  const node: FeedNode = { ...new FeedNode(), ...feedNode }
+  const node: FeedNode = { ...feedNode }
   node.dataProviders = []
   return node
 }
