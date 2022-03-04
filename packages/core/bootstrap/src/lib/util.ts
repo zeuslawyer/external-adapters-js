@@ -1,4 +1,4 @@
-import { AdapterImplementation, AdapterRequest, SymbolToIdOverride } from '@chainlink/types'
+import { AdapterImplementation, AdapterRequest, OverrideObj } from '@chainlink/types'
 import { Decimal } from 'decimal.js'
 import { flatMap, values, pick, omit } from 'lodash'
 import objectHash from 'object-hash'
@@ -374,14 +374,9 @@ export const getRequiredEnvWithFallback = (
   throw new RequiredEnvError(getEnvName(primary, prefix))
 }
 
-export const isSymbolToIdOverride = (
-  symbolToIdOverride: unknown,
-): symbolToIdOverride is SymbolToIdOverride => {
-  if (!symbolToIdOverride) {
-    return false
-  }
-  for (const adapterName of Object.keys(symbolToIdOverride as SymbolToIdOverride)) {
-    const adapterOverrides = (symbolToIdOverride as SymbolToIdOverride)[adapterName]
+export const isOverrideObj = (symbolToIdOverride: unknown): symbolToIdOverride is OverrideObj => {
+  for (const adapterName of Object.keys(symbolToIdOverride as OverrideObj)) {
+    const adapterOverrides = (symbolToIdOverride as OverrideObj)[adapterName]
     for (const overriddenSymbol of Object.keys(adapterOverrides)) {
       if (typeof adapterOverrides[overriddenSymbol] !== 'string') return false
     }
