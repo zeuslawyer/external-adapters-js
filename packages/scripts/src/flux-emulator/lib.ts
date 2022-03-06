@@ -1,7 +1,9 @@
 import chalk from 'chalk'
 import * as ephemeralAdapters from '../ephemeral-adapters/lib'
+import * as shell from 'shelljs'
 import {
   addAdapterToConfig,
+  ConfigPayload,
   convertConfigToK6Payload,
   fetchConfigFromUrl,
   K6Payload,
@@ -9,6 +11,7 @@ import {
   removeAdapterFromFeed,
   setFluxConfig,
 } from './ReferenceContractConfig'
+import { lastValueFrom } from 'rxjs'
 const { red, blue } = chalk
 
 const logInfo = (msg: string) => console.log(blue.bold(msg))
@@ -32,6 +35,15 @@ export const FLUX_CONFIG_INPUTS: ephemeralAdapters.Inputs = {
   imageRepository: 'kalverra/',
   helmValuesOverride: './packages/scripts/src/flux-emulator/values.yaml',
   name: 'fluxconfig',
+}
+
+const testEnvOverrides = {
+  API_VERBOSE: undefined,
+  EA_PORT: '0',
+  LOG_LEVEL: 'debug',
+  NODE_ENV: undefined,
+  RECORD: undefined,
+  WS_ENABLED: undefined,
 }
 
 export interface Inputs {
@@ -96,19 +108,19 @@ export const checkArgs = (): Inputs => {
  */
 export const start = async (inputs: Inputs): Promise<void> => {
   logInfo('Fetching master config')
-  const masterConfig = await fetchConfigFromUrl(inputs.weiWatcherServer)
+  const masterConfig = await lastValueFrom(fetchConfigFromUrl(inputs.weiWatcherServer))
   if (!masterConfig || !masterConfig.configs) throwError('Could not get the master configuration')
 
   logInfo('Fetching existing qa config')
-  const qaConfig = await fetchConfigFromUrl(inputs.configServerGet)
+  const qaConfig = await lastValueFrom(fetchConfigFromUrl(inputs.configServerGet))
   if (!qaConfig || !qaConfig.configs) throwError('Could not get the qa configuration')
 
   logInfo('Adding new adapter to qa config')
   const newConfig = addAdapterToConfig(
     inputs.adapter,
     inputs.ephemeralName,
-    masterConfig.configs,
-    qaConfig.configs,
+    masterConfig.configs as ReferenceContractConfig[],
+    qaConfig.configs as ReferenceContractConfig[],
   )
 
   logInfo('Sending new config to config server')
@@ -120,10 +132,13 @@ export const start = async (inputs: Inputs): Promise<void> => {
  * @param {Inputs} inputs The inputs to use to determine which adapter to test
  */
 export const stop = async (inputs: Inputs): Promise<void> => {
-  const qaConfig = fetchConfigFromUrl(inputs.configServerGet)
+  const qaConfig = await lastValueFrom(fetchConfigFromUrl(inputs.configServerGet))
   if (!qaConfig || !qaConfig.configs) throwError('Could not get the qa configuration')
 
-  const newConfig = removeAdapterFromFeed(inputs.ephemeralName, qaConfig.configs)
+  const newConfig = removeAdapterFromFeed(
+    inputs.ephemeralName,
+    qaConfig.configs as ReferenceContractConfig[],
+  )
   await setFluxConfig(newConfig, inputs.configServerSet)
 }
 
@@ -135,7 +150,7 @@ export const stop = async (inputs: Inputs): Promise<void> => {
  */
 export const writeK6Payload = async (inputs: Inputs): Promise<void> => {
   logInfo('Fetching master config')
-  const masterConfig = await fetchConfigFromUrl(inputs.weiWatcherServer).toPromise()
+  const masterConfig = await lastValueFrom(fetchConfigFromUrl(inputs.weiWatcherServer))
   if (!masterConfig || !masterConfig.configs) throwError('Could not get the master configuration')
 
   logInfo('Adding new adapter to qa config')
@@ -143,26 +158,74 @@ export const writeK6Payload = async (inputs: Inputs): Promise<void> => {
   const newConfig: ReferenceContractConfig[] = addAdapterToConfig(
     inputs.adapter,
     inputs.ephemeralName,
-    //@ts-expect-error masterConfig.configs guaranteed to be defined given throwError when undefined
     masterConfig.configs as ReferenceContractConfig[],
     qaConfig.configs,
   )
 
-  // const nameAndData: { name: string; data: Record<string, any> }[] = newConfig.map(
-  //   ({ name, data }) => ({ name, data })
-  // )
-  // TODO add integration test data here
+  const nameAndData: ConfigPayload[] = newConfig.map(({ name, data }) => ({ name, data }))
 
-  // TODO add test-payload data here
+  let pathToAdapter = ''
+  if (shell.test('-d', 'packages/sources/' + inputs.adapter)) {
+    pathToAdapter = 'packages/sources/' + inputs.adapter
+  } else if (shell.test('-d', 'packages/composites/' + inputs.adapter)) {
+    pathToAdapter = 'packages/composites/' + inputs.adapter
+  } else if (shell.test('-d', 'packages/targets/' + inputs.adapter)) {
+    pathToAdapter = 'packages/targets/' + inputs.adapter
+  }
 
-  // TODO if nameAndData is empty at this point, throw error
+  const integrationTestOutput = shell
+    .exec(`yarn test ${pathToAdapter}/test/integration/*.test.ts`, {
+      fatal: true,
+      silent: true,
+      env: { ...process.env, ...testEnvOverrides },
+    })
+    .toString()
+
+  console.log({ integrationTestOutput, pathToAdapter })
+
+  const { integrationTestPayloads } = integrationTestOutput.split('\n').reduce(
+    (reduced: Record<string, any>, consoleOut) => {
+      let { latestInput } = reduced
+      const { integrationTestPayloads } = reduced
+
+      try {
+        const parsed = JSON.parse(consoleOut)
+        if ('input' in parsed) latestInput = parsed.input
+        else if ('output' in parsed && latestInput) {
+          integrationTestPayloads.push(latestInput)
+          latestInput = null // Ensures we don't use the same input twice
+        }
+        return { latestInput, integrationTestPayloads }
+      } catch (e) {
+        return { latestInput, integrationTestPayloads }
+      }
+    },
+    { integrationTestPayloads: [] },
+  )
+
+  //TODO get names for the payloads (based on what the flux emulator names would be)
+  nameAndData.push(
+    ...integrationTestPayloads.map((data: Record<string, any>) => ({
+      name: 'integration-test',
+      data,
+    })),
+  )
+
+  const payloadPath = pathToAdapter + '/test-payload.json'
+  if (shell.test('-f', payloadPath)) {
+    const examplePayload = JSON.parse(shell.cat(payloadPath).toString())
+    //TODO get names for the payloads (based on what the flux emulator names would be)
+    nameAndData.push({ name: 'test-payload', data: examplePayload })
+  }
+
+  if (!nameAndData.length) throwError(`No test payloads found for ${inputs.adapter} adapter`)
 
   logInfo('Convert config into k6 payload')
-  const payloads: K6Payload[] = convertConfigToK6Payload(newConfig)
+  const payloads: K6Payload[] = convertConfigToK6Payload(nameAndData)
 
   logInfo('Writing k6 payload to a file')
   // write the payloads to a file in the k6 folder for the docker container to pick up
-  fs.writeFileSync('./packages/k6/src/config/ws.json', JSON.stringify(payloads))
+  fs.writeFileSync('./packages/k6/src/http.json', JSON.stringify(payloads))
 }
 
 export const main = async (): Promise<void> => {
