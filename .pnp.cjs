@@ -95,6 +95,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/composites/medianizer"
       },
       {
+        "name": "@chainlink/nftx-adapter",
+        "reference": "workspace:packages/composites/nftx"
+      },
+      {
         "name": "@chainlink/outlier-detection-adapter",
         "reference": "workspace:packages/composites/outlier-detection"
       },
@@ -797,6 +801,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@chainlink/mock-ea-adapter", ["workspace:packages/sources/mock-ea"]],
       ["@chainlink/mycryptoapi-adapter", ["workspace:packages/sources/mycryptoapi"]],
       ["@chainlink/ncfx-adapter", ["workspace:packages/sources/ncfx"]],
+      ["@chainlink/nftx-adapter", ["workspace:packages/composites/nftx"]],
       ["@chainlink/nikkei-adapter", ["workspace:packages/sources/nikkei"]],
       ["@chainlink/nomics-adapter", ["workspace:packages/sources/nomics"]],
       ["@chainlink/oilpriceapi-adapter", ["workspace:packages/sources/oilpriceapi"]],
@@ -873,6 +878,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:532fdf4c5364453a90c37bb5287483fa331782ecfc41fc8a238ae4c5b9ecbfa540f6b4c584d3930549b0f5a0f6dd6c0d866dbdf0879570565599d51c3b649109#npm:27.3.1"],
             ["lint-staged", "npm:11.2.6"],
             ["prettier", "npm:2.5.1"],
+            ["source-map-support", "npm:0.5.21"],
             ["ts-node", "virtual:532fdf4c5364453a90c37bb5287483fa331782ecfc41fc8a238ae4c5b9ecbfa540f6b4c584d3930549b0f5a0f6dd6c0d866dbdf0879570565599d51c3b649109#npm:10.4.0"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4046,7 +4052,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4066,7 +4072,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.5.0"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4140,7 +4146,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4177,7 +4183,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4200,7 +4206,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bignumber.js", "npm:9.0.2"],
             ["ethers", "npm:5.5.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4217,6 +4223,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
+            ["@types/supertest", "npm:2.0.11"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4236,7 +4245,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4295,7 +4304,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["decimal.js", "npm:10.3.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4312,8 +4321,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4331,8 +4340,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4368,8 +4377,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4388,8 +4397,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4444,7 +4453,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["blockcypher", "npm:0.3.0"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4463,7 +4472,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4500,7 +4509,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4525,7 +4534,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["bignumber.js", "npm:9.0.1"],
             ["bn.js", "npm:5.2.0"],
             ["ethers", "npm:5.5.1"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4543,8 +4552,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4562,8 +4571,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4581,8 +4590,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4636,7 +4645,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4654,8 +4663,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4674,7 +4683,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4693,7 +4702,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4712,8 +4721,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4732,7 +4741,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4752,7 +4761,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4771,7 +4780,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4790,7 +4799,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4838,7 +4847,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4879,8 +4888,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["ethers", "npm:5.4.6"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4917,7 +4926,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4935,8 +4944,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4955,7 +4964,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4974,7 +4983,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -4995,7 +5004,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["decimal.js", "npm:10.3.1"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5015,7 +5024,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5052,7 +5061,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5087,7 +5096,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5161,7 +5170,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5181,7 +5190,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5204,7 +5213,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ipfs", "npm:0.60.2"],
             ["merkletreejs", "npm:0.2.24"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"],
             ["web3", "npm:1.5.2"]
@@ -5495,7 +5504,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["hardhat", "npm:2.7.1"],
-            ["mock-socket", "npm:9.1.0"],
+            ["mock-socket", "npm:9.1.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5515,7 +5524,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5534,7 +5543,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5555,7 +5564,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5574,7 +5583,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5593,7 +5602,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5612,7 +5621,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5631,7 +5640,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5698,7 +5707,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5728,6 +5737,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:532fdf4c5364453a90c37bb5287483fa331782ecfc41fc8a238ae4c5b9ecbfa540f6b4c584d3930549b0f5a0f6dd6c0d866dbdf0879570565599d51c3b649109#npm:27.3.1"],
             ["lint-staged", "npm:11.2.6"],
             ["prettier", "npm:2.5.1"],
+            ["source-map-support", "npm:0.5.21"],
             ["ts-node", "virtual:532fdf4c5364453a90c37bb5287483fa331782ecfc41fc8a238ae4c5b9ecbfa540f6b4c584d3930549b0f5a0f6dd6c0d866dbdf0879570565599d51c3b649109#npm:10.4.0"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5746,7 +5756,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5765,7 +5775,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5784,7 +5794,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5803,7 +5813,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5838,7 +5848,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5857,7 +5867,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -5875,7 +5885,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6004,7 +6014,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["decimal.js", "npm:10.3.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6023,7 +6033,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6040,8 +6050,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
+            ["@types/supertest", "npm:2.0.11"],
             ["express", "npm:4.17.1"],
             ["intrinio-realtime", "npm:2.3.0"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6103,7 +6116,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6122,7 +6135,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6159,7 +6172,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6184,7 +6197,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["moment", "npm:2.29.1"],
             ["moment-timezone", "npm:0.5.34"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6237,7 +6250,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.7"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6276,7 +6289,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6296,7 +6309,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["axios", "npm:0.24.0"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6331,7 +6344,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6369,7 +6382,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6387,7 +6400,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
+            ["tslib", "npm:2.3.1"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@chainlink/nftx-adapter", [
+        ["workspace:packages/composites/nftx", {
+          "packageLocation": "./packages/composites/nftx/",
+          "packageDependencies": [
+            ["@chainlink/nftx-adapter", "workspace:packages/composites/nftx"],
+            ["@chainlink/ea-bootstrap", "workspace:packages/core/bootstrap"],
+            ["@chainlink/ea-test-helpers", "workspace:packages/core/test-helpers"],
+            ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
+            ["@chainlink/uniswap-v2-adapter", "workspace:packages/sources/uniswap-v2"],
+            ["@types/jest", "npm:27.0.3"],
+            ["@types/node", "npm:16.11.19"],
+            ["@types/supertest", "npm:2.0.11"],
+            ["decimal.js", "npm:10.3.1"],
+            ["ethers", "npm:5.5.4"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6405,7 +6440,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6424,7 +6459,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6443,7 +6478,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6460,6 +6495,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
+            ["@types/supertest", "npm:2.0.11"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6478,7 +6516,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6497,7 +6535,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6537,7 +6575,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6574,7 +6612,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6593,7 +6631,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6667,7 +6705,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["decimal.js", "npm:10.3.1"],
             ["object-path", "npm:0.11.5"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6707,7 +6745,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["bitcoinjs-lib", "npm:5.2.0"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6726,7 +6764,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6747,7 +6785,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6768,7 +6806,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["jsonwebtoken", "npm:8.5.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6789,7 +6827,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6808,7 +6846,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6850,7 +6888,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ethers", "npm:5.4.6"],
             ["luxon", "npm:2.0.2"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6869,7 +6907,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6890,7 +6928,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["decimal.js", "npm:10.3.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["synthetix", "npm:2.45.3"],
             ["tslib", "npm:2.3.1"],
             ["type-fest", "npm:2.0.0"],
@@ -6905,14 +6943,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@chainlink/synthetix-debt-pool-adapter", "workspace:packages/sources/synthetix-debt-pool"],
             ["@chainlink/ea-bootstrap", "workspace:packages/core/bootstrap"],
-            ["@chainlink/ea-reference-data-reader", "workspace:packages/core/reference-data-reader"],
             ["@chainlink/ea-test-helpers", "workspace:packages/core/test-helpers"],
             ["@chainlink/types", "workspace:packages/core/types/@chainlink"],
+            ["@synthetixio/contracts-interface", "npm:2.61.0"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["ethers", "npm:5.4.7"],
-            ["supertest", "npm:6.1.6"],
+            ["ethers", "npm:5.5.3"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6931,7 +6969,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6951,7 +6989,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -6988,7 +7026,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7007,7 +7045,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7058,7 +7096,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7078,7 +7116,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["express", "npm:4.17.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7097,7 +7135,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7116,7 +7154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7144,7 +7182,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7165,7 +7203,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["decimal.js", "npm:10.3.1"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7186,7 +7224,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["decimal.js", "npm:10.3.1"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7205,7 +7243,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7224,7 +7262,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7261,7 +7299,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.4.6"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7281,7 +7319,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7300,7 +7338,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7319,7 +7357,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7337,8 +7375,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.19"],
             ["@types/supertest", "npm:2.0.11"],
-            ["nock", "npm:13.1.3"],
-            ["supertest", "npm:6.1.6"],
+            ["nock", "npm:13.2.4"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -7359,7 +7397,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supertest", "npm:2.0.11"],
             ["ethers", "npm:5.5.1"],
             ["nock", "npm:13.2.4"],
-            ["supertest", "npm:6.1.6"],
+            ["supertest", "npm:6.2.2"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=493e53"]
           ],
@@ -8515,6 +8553,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ethersproject/logger", "npm:5.5.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.5.2", {
+          "packageLocation": "./.yarn/cache/@ethersproject-networks-npm-5.5.2-a47d32c156-d6768591ac.zip/node_modules/@ethersproject/networks/",
+          "packageDependencies": [
+            ["@ethersproject/networks", "npm:5.5.2"],
+            ["@ethersproject/logger", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ethersproject/pbkdf2", [
@@ -8684,6 +8730,58 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ws", "virtual:f8e286d84f8023745d6a6699ba366e72cffd5624b0e37c7297befebfd7a1558c8429f21e067fd790e82b4f9021db63752b951a934771514b1be0ba4ff5cd1051#npm:7.4.6"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.5.2", {
+          "packageLocation": "./.yarn/cache/@ethersproject-providers-npm-5.5.2-761af202e7-f03b78017f.zip/node_modules/@ethersproject/providers/",
+          "packageDependencies": [
+            ["@ethersproject/providers", "npm:5.5.2"],
+            ["@ethersproject/abstract-provider", "npm:5.5.1"],
+            ["@ethersproject/abstract-signer", "npm:5.5.0"],
+            ["@ethersproject/address", "npm:5.5.0"],
+            ["@ethersproject/basex", "npm:5.5.0"],
+            ["@ethersproject/bignumber", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/constants", "npm:5.5.0"],
+            ["@ethersproject/hash", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"],
+            ["@ethersproject/networks", "npm:5.5.0"],
+            ["@ethersproject/properties", "npm:5.5.0"],
+            ["@ethersproject/random", "npm:5.5.0"],
+            ["@ethersproject/rlp", "npm:5.5.0"],
+            ["@ethersproject/sha2", "npm:5.5.0"],
+            ["@ethersproject/strings", "npm:5.5.0"],
+            ["@ethersproject/transactions", "npm:5.5.0"],
+            ["@ethersproject/web", "npm:5.5.0"],
+            ["bech32", "npm:1.1.4"],
+            ["ws", "virtual:f8e286d84f8023745d6a6699ba366e72cffd5624b0e37c7297befebfd7a1558c8429f21e067fd790e82b4f9021db63752b951a934771514b1be0ba4ff5cd1051#npm:7.4.6"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.5.3", {
+          "packageLocation": "./.yarn/cache/@ethersproject-providers-npm-5.5.3-409a18e223-abe27d4243.zip/node_modules/@ethersproject/providers/",
+          "packageDependencies": [
+            ["@ethersproject/providers", "npm:5.5.3"],
+            ["@ethersproject/abstract-provider", "npm:5.5.1"],
+            ["@ethersproject/abstract-signer", "npm:5.5.0"],
+            ["@ethersproject/address", "npm:5.5.0"],
+            ["@ethersproject/basex", "npm:5.5.0"],
+            ["@ethersproject/bignumber", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/constants", "npm:5.5.0"],
+            ["@ethersproject/hash", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"],
+            ["@ethersproject/networks", "npm:5.5.0"],
+            ["@ethersproject/properties", "npm:5.5.0"],
+            ["@ethersproject/random", "npm:5.5.0"],
+            ["@ethersproject/rlp", "npm:5.5.0"],
+            ["@ethersproject/sha2", "npm:5.5.0"],
+            ["@ethersproject/strings", "npm:5.5.0"],
+            ["@ethersproject/transactions", "npm:5.5.0"],
+            ["@ethersproject/web", "npm:5.5.0"],
+            ["bech32", "npm:1.1.4"],
+            ["ws", "virtual:f8e286d84f8023745d6a6699ba366e72cffd5624b0e37c7297befebfd7a1558c8429f21e067fd790e82b4f9021db63752b951a934771514b1be0ba4ff5cd1051#npm:7.4.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@ethersproject/random", [
@@ -8709,6 +8807,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ethersproject-random-npm-5.5.0-9f3f578e63-7acbe2a5d3.zip/node_modules/@ethersproject/random/",
           "packageDependencies": [
             ["@ethersproject/random", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@ethersproject-random-npm-5.5.1-3c471e4f5c-6370776554.zip/node_modules/@ethersproject/random/",
+          "packageDependencies": [
+            ["@ethersproject/random", "npm:5.5.1"],
             ["@ethersproject/bytes", "npm:5.5.0"],
             ["@ethersproject/logger", "npm:5.5.0"]
           ],
@@ -9065,6 +9172,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@ethersproject-web-npm-5.5.0-2b9d9746bd-1e02916bc0.zip/node_modules/@ethersproject/web/",
           "packageDependencies": [
             ["@ethersproject/web", "npm:5.5.0"],
+            ["@ethersproject/base64", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"],
+            ["@ethersproject/properties", "npm:5.5.0"],
+            ["@ethersproject/strings", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.5.1", {
+          "packageLocation": "./.yarn/cache/@ethersproject-web-npm-5.5.1-1466b1418d-4718efd7e7.zip/node_modules/@ethersproject/web/",
+          "packageDependencies": [
+            ["@ethersproject/web", "npm:5.5.1"],
             ["@ethersproject/base64", "npm:5.5.0"],
             ["@ethersproject/bytes", "npm:5.5.0"],
             ["@ethersproject/logger", "npm:5.5.0"],
@@ -10806,6 +10925,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@stablelib/keyagreement", "npm:1.0.1"],
             ["@stablelib/random", "npm:1.0.1"],
             ["@stablelib/wipe", "npm:1.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@synthetixio/contracts-interface", [
+        ["npm:2.61.0", {
+          "packageLocation": "./.yarn/cache/@synthetixio-contracts-interface-npm-2.61.0-1c06ad9b46-575f52f727.zip/node_modules/@synthetixio/contracts-interface/",
+          "packageDependencies": [
+            ["@synthetixio/contracts-interface", "npm:2.61.0"],
+            ["ethers", "npm:5.5.3"],
+            ["lodash", "npm:4.17.19"],
+            ["synthetix", "npm:2.61.0"],
+            ["web3-utils", "npm:1.2.11"]
           ],
           "linkType": "HARD",
         }]
@@ -12771,6 +12903,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ansi-escapes", [
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/ansi-escapes-npm-3.2.0-a9d573100e-0f94695b67.zip/node_modules/ansi-escapes/",
+          "packageDependencies": [
+            ["ansi-escapes", "npm:3.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:4.3.2", {
           "packageLocation": "./.yarn/cache/ansi-escapes-npm-4.3.2-3ad173702f-93111c4218.zip/node_modules/ansi-escapes/",
           "packageDependencies": [
@@ -15033,6 +15172,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["cli-cursor", [
+        ["npm:2.1.0", {
+          "packageLocation": "./.yarn/cache/cli-cursor-npm-2.1.0-3920629c9c-d88e97bfda.zip/node_modules/cli-cursor/",
+          "packageDependencies": [
+            ["cli-cursor", "npm:2.1.0"],
+            ["restore-cursor", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.1.0", {
           "packageLocation": "./.yarn/cache/cli-cursor-npm-3.1.0-fee1e46b5e-2692784c6c.zip/node_modules/cli-cursor/",
           "packageDependencies": [
@@ -15049,6 +15196,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cli-truncate", "npm:2.1.0"],
             ["slice-ansi", "npm:3.0.0"],
             ["string-width", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["cli-width", [
+        ["npm:2.2.1", {
+          "packageLocation": "./.yarn/cache/cli-width-npm-2.2.1-4bdb77393c-3c21b897a2.zip/node_modules/cli-width/",
+          "packageDependencies": [
+            ["cli-width", "npm:2.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -17938,6 +18094,80 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ethersproject/wordlists", "npm:5.5.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:5.5.3", {
+          "packageLocation": "./.yarn/cache/ethers-npm-5.5.3-e97d1833ea-0ac0a9e3d3.zip/node_modules/ethers/",
+          "packageDependencies": [
+            ["ethers", "npm:5.5.3"],
+            ["@ethersproject/abi", "npm:5.5.0"],
+            ["@ethersproject/abstract-provider", "npm:5.5.1"],
+            ["@ethersproject/abstract-signer", "npm:5.5.0"],
+            ["@ethersproject/address", "npm:5.5.0"],
+            ["@ethersproject/base64", "npm:5.5.0"],
+            ["@ethersproject/basex", "npm:5.5.0"],
+            ["@ethersproject/bignumber", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/constants", "npm:5.5.0"],
+            ["@ethersproject/contracts", "npm:5.5.0"],
+            ["@ethersproject/hash", "npm:5.5.0"],
+            ["@ethersproject/hdnode", "npm:5.5.0"],
+            ["@ethersproject/json-wallets", "npm:5.5.0"],
+            ["@ethersproject/keccak256", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"],
+            ["@ethersproject/networks", "npm:5.5.2"],
+            ["@ethersproject/pbkdf2", "npm:5.5.0"],
+            ["@ethersproject/properties", "npm:5.5.0"],
+            ["@ethersproject/providers", "npm:5.5.2"],
+            ["@ethersproject/random", "npm:5.5.1"],
+            ["@ethersproject/rlp", "npm:5.5.0"],
+            ["@ethersproject/sha2", "npm:5.5.0"],
+            ["@ethersproject/signing-key", "npm:5.5.0"],
+            ["@ethersproject/solidity", "npm:5.5.0"],
+            ["@ethersproject/strings", "npm:5.5.0"],
+            ["@ethersproject/transactions", "npm:5.5.0"],
+            ["@ethersproject/units", "npm:5.5.0"],
+            ["@ethersproject/wallet", "npm:5.5.0"],
+            ["@ethersproject/web", "npm:5.5.1"],
+            ["@ethersproject/wordlists", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:5.5.4", {
+          "packageLocation": "./.yarn/cache/ethers-npm-5.5.4-dd80838ca3-5981da6164.zip/node_modules/ethers/",
+          "packageDependencies": [
+            ["ethers", "npm:5.5.4"],
+            ["@ethersproject/abi", "npm:5.5.0"],
+            ["@ethersproject/abstract-provider", "npm:5.5.1"],
+            ["@ethersproject/abstract-signer", "npm:5.5.0"],
+            ["@ethersproject/address", "npm:5.5.0"],
+            ["@ethersproject/base64", "npm:5.5.0"],
+            ["@ethersproject/basex", "npm:5.5.0"],
+            ["@ethersproject/bignumber", "npm:5.5.0"],
+            ["@ethersproject/bytes", "npm:5.5.0"],
+            ["@ethersproject/constants", "npm:5.5.0"],
+            ["@ethersproject/contracts", "npm:5.5.0"],
+            ["@ethersproject/hash", "npm:5.5.0"],
+            ["@ethersproject/hdnode", "npm:5.5.0"],
+            ["@ethersproject/json-wallets", "npm:5.5.0"],
+            ["@ethersproject/keccak256", "npm:5.5.0"],
+            ["@ethersproject/logger", "npm:5.5.0"],
+            ["@ethersproject/networks", "npm:5.5.2"],
+            ["@ethersproject/pbkdf2", "npm:5.5.0"],
+            ["@ethersproject/properties", "npm:5.5.0"],
+            ["@ethersproject/providers", "npm:5.5.3"],
+            ["@ethersproject/random", "npm:5.5.1"],
+            ["@ethersproject/rlp", "npm:5.5.0"],
+            ["@ethersproject/sha2", "npm:5.5.0"],
+            ["@ethersproject/signing-key", "npm:5.5.0"],
+            ["@ethersproject/solidity", "npm:5.5.0"],
+            ["@ethersproject/strings", "npm:5.5.0"],
+            ["@ethersproject/transactions", "npm:5.5.0"],
+            ["@ethersproject/units", "npm:5.5.0"],
+            ["@ethersproject/wallet", "npm:5.5.0"],
+            ["@ethersproject/web", "npm:5.5.1"],
+            ["@ethersproject/wordlists", "npm:5.5.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["ethjs-unit", [
@@ -18440,6 +18670,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["fd-slicer", "npm:1.1.0"],
             ["pend", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["figures", [
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/figures-npm-2.0.0-f2db814eec-081beb16ea.zip/node_modules/figures/",
+          "packageDependencies": [
+            ["figures", "npm:2.0.0"],
+            ["escape-string-regexp", "npm:1.0.5"]
           ],
           "linkType": "HARD",
         }]
@@ -20272,6 +20512,54 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ini-npm-2.0.0-28f7426761-e7aadc5fb2.zip/node_modules/ini/",
           "packageDependencies": [
             ["ini", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["inquirer", [
+        ["npm:6.5.2", {
+          "packageLocation": "./.yarn/cache/inquirer-npm-6.5.2-4f6408c247-175ad4cd1e.zip/node_modules/inquirer/",
+          "packageDependencies": [
+            ["inquirer", "npm:6.5.2"],
+            ["ansi-escapes", "npm:3.2.0"],
+            ["chalk", "npm:2.4.2"],
+            ["cli-cursor", "npm:2.1.0"],
+            ["cli-width", "npm:2.2.1"],
+            ["external-editor", "npm:3.1.0"],
+            ["figures", "npm:2.0.0"],
+            ["lodash", "npm:4.17.21"],
+            ["mute-stream", "npm:0.0.7"],
+            ["run-async", "npm:2.4.1"],
+            ["rxjs", "npm:6.6.7"],
+            ["string-width", "npm:2.1.1"],
+            ["strip-ansi", "npm:5.2.0"],
+            ["through", "npm:2.3.8"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["inquirer-list-search-prompt", [
+        ["npm:1.0.2", {
+          "packageLocation": "./.yarn/cache/inquirer-list-search-prompt-npm-1.0.2-1b893c38a0-0bf538a27e.zip/node_modules/inquirer-list-search-prompt/",
+          "packageDependencies": [
+            ["inquirer-list-search-prompt", "npm:1.0.2"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:ddef24006e74e32e71d4488e17885e419436c5978dd4d5cb0424918d4007c689e32bddd7f2692a329aa538eaea195cee3c847349b12663bdab910caaabd4c417#npm:1.0.2", {
+          "packageLocation": "./.yarn/__virtual__/inquirer-list-search-prompt-virtual-e2fb598d2f/0/cache/inquirer-list-search-prompt-npm-1.0.2-1b893c38a0-0bf538a27e.zip/node_modules/inquirer-list-search-prompt/",
+          "packageDependencies": [
+            ["inquirer-list-search-prompt", "virtual:ddef24006e74e32e71d4488e17885e419436c5978dd4d5cb0424918d4007c689e32bddd7f2692a329aa538eaea195cee3c847349b12663bdab910caaabd4c417#npm:1.0.2"],
+            ["@types/inquirer", null],
+            ["ansi-escapes", "npm:3.2.0"],
+            ["chalk", "npm:2.4.2"],
+            ["figures", "npm:2.0.0"],
+            ["inquirer", "npm:6.5.2"],
+            ["run-async", "npm:2.4.1"]
+          ],
+          "packagePeers": [
+            "@types/inquirer",
+            "inquirer"
           ],
           "linkType": "HARD",
         }]
@@ -22986,6 +23274,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["js-levenshtein", [
+        ["npm:1.1.6", {
+          "packageLocation": "./.yarn/cache/js-levenshtein-npm-1.1.6-ab883e61a3-409f052a7f.zip/node_modules/js-levenshtein/",
+          "packageDependencies": [
+            ["js-levenshtein", "npm:1.1.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["js-sha3", [
         ["npm:0.5.7", {
           "packageLocation": "./.yarn/cache/js-sha3-npm-0.5.7-e4e4cb1ee3-973a28ea4b.zip/node_modules/js-sha3/",
@@ -24363,6 +24660,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["lodash", [
+        ["npm:4.17.19", {
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.19-fa87a8e838-a5cc77099f.zip/node_modules/lodash/",
+          "packageDependencies": [
+            ["lodash", "npm:4.17.19"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:4.17.21", {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",
           "packageDependencies": [
@@ -25654,10 +25958,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["mock-socket", [
-        ["npm:9.1.0", {
-          "packageLocation": "./.yarn/cache/mock-socket-npm-9.1.0-ccd2b5bee9-19b16017da.zip/node_modules/mock-socket/",
+        ["npm:9.1.2", {
+          "packageLocation": "./.yarn/cache/mock-socket-npm-9.1.2-a69db42457-ef25dbd57b.zip/node_modules/mock-socket/",
           "packageDependencies": [
-            ["mock-socket", "npm:9.1.0"]
+            ["mock-socket", "npm:9.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -25924,6 +26228,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mutable-proxy-npm-1.0.0-4250647937-97fe153125.zip/node_modules/mutable-proxy/",
           "packageDependencies": [
             ["mutable-proxy", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["mute-stream", [
+        ["npm:0.0.7", {
+          "packageLocation": "./.yarn/cache/mute-stream-npm-0.0.7-22b59a65dd-a9d4772c1c.zip/node_modules/mute-stream/",
+          "packageDependencies": [
+            ["mute-stream", "npm:0.0.7"]
           ],
           "linkType": "HARD",
         }]
@@ -26200,17 +26513,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["nock", [
-        ["npm:13.1.3", {
-          "packageLocation": "./.yarn/cache/nock-npm-13.1.3-d88740d23e-9e53a1edaa.zip/node_modules/nock/",
-          "packageDependencies": [
-            ["nock", "npm:13.1.3"],
-            ["debug", "virtual:c2bff3e67180802999655a22d390062982690e911b9d9225c258f3b25e7409f3867b2682c16232b77415f560a09d05a95042dc512a5b8c566c42bbbed88b0bbc#npm:4.3.2"],
-            ["json-stringify-safe", "npm:5.0.1"],
-            ["lodash.set", "npm:4.3.2"],
-            ["propagate", "npm:2.0.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:13.2.4", {
           "packageLocation": "./.yarn/cache/nock-npm-13.2.4-f1ad2d6861-2750a82ea2.zip/node_modules/nock/",
           "packageDependencies": [
@@ -26758,6 +27060,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["onetime", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/onetime-npm-2.0.1-6c39ecc911-bb44015ac7.zip/node_modules/onetime/",
+          "packageDependencies": [
+            ["onetime", "npm:2.0.1"],
+            ["mimic-fn", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:5.1.2", {
           "packageLocation": "./.yarn/cache/onetime-npm-5.1.2-3ed148fa42-2478859ef8.zip/node_modules/onetime/",
           "packageDependencies": [
@@ -29070,6 +29380,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["restore-cursor", [
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/restore-cursor-npm-2.0.0-80278eb6b7-482e13d02d.zip/node_modules/restore-cursor/",
+          "packageDependencies": [
+            ["restore-cursor", "npm:2.0.0"],
+            ["onetime", "npm:2.0.1"],
+            ["signal-exit", "npm:3.0.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:3.1.0", {
           "packageLocation": "./.yarn/cache/restore-cursor-npm-3.1.0-52c5a4c98f-f877dd8741.zip/node_modules/restore-cursor/",
           "packageDependencies": [
@@ -29247,6 +29566,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rsv-signature", "npm:1.1.0"],
             ["bn.js", "npm:4.12.0"],
             ["enc-utils", "npm:2.2.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["run-async", [
+        ["npm:2.4.1", {
+          "packageLocation": "./.yarn/cache/run-async-npm-2.4.1-a94bb90861-a2c88aa15d.zip/node_modules/run-async/",
+          "packageDependencies": [
+            ["run-async", "npm:2.4.1"]
           ],
           "linkType": "HARD",
         }]
@@ -30128,6 +30456,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["source-map", "npm:0.6.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:0.5.21", {
+          "packageLocation": "./.yarn/cache/source-map-support-npm-0.5.21-09ca99e250-43e98d700d.zip/node_modules/source-map-support/",
+          "packageDependencies": [
+            ["source-map-support", "npm:0.5.21"],
+            ["buffer-from", "npm:1.1.2"],
+            ["source-map", "npm:0.6.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["source-map-url", [
@@ -30708,24 +31045,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:6.1.0", {
-          "packageLocation": "./.yarn/cache/superagent-npm-6.1.0-053b76aea5-32ca1bc980.zip/node_modules/superagent/",
-          "packageDependencies": [
-            ["superagent", "npm:6.1.0"],
-            ["component-emitter", "npm:1.3.0"],
-            ["cookiejar", "npm:2.1.2"],
-            ["debug", "virtual:c2bff3e67180802999655a22d390062982690e911b9d9225c258f3b25e7409f3867b2682c16232b77415f560a09d05a95042dc512a5b8c566c42bbbed88b0bbc#npm:4.3.2"],
-            ["fast-safe-stringify", "npm:2.0.8"],
-            ["form-data", "npm:3.0.1"],
-            ["formidable", "npm:1.2.2"],
-            ["methods", "npm:1.1.2"],
-            ["mime", "npm:2.5.2"],
-            ["qs", "npm:6.10.1"],
-            ["readable-stream", "npm:3.6.0"],
-            ["semver", "npm:7.3.5"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:7.1.1", {
           "packageLocation": "./.yarn/cache/superagent-npm-7.1.1-44803748c3-8710b84cf5.zip/node_modules/superagent/",
           "packageDependencies": [
@@ -30755,15 +31074,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["supertest", [
-        ["npm:6.1.6", {
-          "packageLocation": "./.yarn/cache/supertest-npm-6.1.6-6f73075270-51d11b794a.zip/node_modules/supertest/",
-          "packageDependencies": [
-            ["supertest", "npm:6.1.6"],
-            ["methods", "npm:1.1.2"],
-            ["superagent", "npm:6.1.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:6.2.2", {
           "packageLocation": "./.yarn/cache/supertest-npm-6.2.2-d999ec4e20-3c1956d57e.zip/node_modules/supertest/",
           "packageDependencies": [
@@ -30897,6 +31207,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["synthetix", "npm:2.45.3"],
             ["abi-decoder", "npm:2.3.0"],
             ["commander", "npm:5.1.0"],
+            ["pretty-error", "npm:2.1.2"],
+            ["solidity-parser-antlr", "npm:0.4.11"],
+            ["web3-utils", "npm:1.2.2"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:2.61.0", {
+          "packageLocation": "./.yarn/cache/synthetix-npm-2.61.0-ddef24006e-d61130c947.zip/node_modules/synthetix/",
+          "packageDependencies": [
+            ["synthetix", "npm:2.61.0"],
+            ["abi-decoder", "npm:2.3.0"],
+            ["commander", "npm:8.1.0"],
+            ["inquirer", "npm:6.5.2"],
+            ["inquirer-list-search-prompt", "virtual:ddef24006e74e32e71d4488e17885e419436c5978dd4d5cb0424918d4007c689e32bddd7f2692a329aa538eaea195cee3c847349b12663bdab910caaabd4c417#npm:1.0.2"],
+            ["js-levenshtein", "npm:1.1.6"],
             ["pretty-error", "npm:2.1.2"],
             ["solidity-parser-antlr", "npm:0.4.11"],
             ["web3-utils", "npm:1.2.2"]
@@ -33057,6 +33382,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["web3-utils", [
+        ["npm:1.2.11", {
+          "packageLocation": "./.yarn/cache/web3-utils-npm-1.2.11-618f0ef456-1e43235963.zip/node_modules/web3-utils/",
+          "packageDependencies": [
+            ["web3-utils", "npm:1.2.11"],
+            ["bn.js", "npm:4.12.0"],
+            ["eth-lib", "npm:0.2.8"],
+            ["ethereum-bloom-filters", "npm:1.0.10"],
+            ["ethjs-unit", "npm:0.1.6"],
+            ["number-to-bn", "npm:1.7.0"],
+            ["randombytes", "npm:2.1.0"],
+            ["underscore", "npm:1.9.1"],
+            ["utf8", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:1.2.2", {
           "packageLocation": "./.yarn/cache/web3-utils-npm-1.2.2-30d9c9754b-bbd1189b7b.zip/node_modules/web3-utils/",
           "packageDependencies": [
