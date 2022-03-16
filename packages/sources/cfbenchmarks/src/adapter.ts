@@ -6,7 +6,7 @@ import {
   APIEndpoint,
   MakeWSHandler,
 } from '@chainlink/types'
-import { AUTHORIZATION_HEADER, Config, makeConfig } from './config'
+import { Config, makeConfig } from './config'
 import * as endpoints from './endpoint'
 
 export const execute: ExecuteWithConfig<Config> = async (request, context, config) => {
@@ -47,9 +47,7 @@ export const makeWSHandler = (config?: Config): MakeWSHandler => {
     return {
       connection: {
         url: defaultConfig.api.baseWsURL,
-        protocol: {
-          headers: { [AUTHORIZATION_HEADER]: defaultConfig.api.headers[AUTHORIZATION_HEADER] },
-        },
+        protocol: ['cfb', defaultConfig.username, defaultConfig.password],
       },
       subscribe: (input) => getSubscription('subscribe', getId(input)),
       unsubscribe: (input) => getSubscription('unsubscribe', getId(input)),
