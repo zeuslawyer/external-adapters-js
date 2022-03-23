@@ -50,6 +50,7 @@ export const requestReducer = createReducer<RequestsState>(initialRequestsState,
     }
     const storedIntervals = [IntervalNames.SECOND, IntervalNames.MINUTE]
 
+    console.log()
     for (const intervalName of storedIntervals) {
       // remove all requests that are older than the current interval
       const window = request.t - Intervals[intervalName]
