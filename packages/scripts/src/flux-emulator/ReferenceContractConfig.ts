@@ -6,6 +6,9 @@ import console from 'console'
 import { AxiosRequestConfig } from 'axios'
 import { randomUUID } from 'crypto'
 
+// ReferenceContractConfig is the shape of reference data for a given data feed,
+// which includes the address of the feed, contract version, and the node operators (nodes)
+// that are being contracted for this feed.
 export class ReferenceContractConfig {
   name: string
   contractVersion: number
@@ -20,11 +23,12 @@ export class ReferenceContractConfig {
   category: string
 
   constructor(input: Record<string, unknown>) {
-    const ValidationError = (param: string) =>
+    const ValidationError = (param: string) => {
       Error(`Contract config "${param}" param is missing or incorrect type`)
+    }
 
     if (typeof input?.name !== 'string') throw ValidationError('name')
-    this.name = input.name
+    else this.name = input.name
 
     if (typeof input?.contractVersion !== 'number') throw ValidationError('contractVersion')
     this.contractVersion = input.contractVersion
@@ -35,12 +39,12 @@ export class ReferenceContractConfig {
     if (typeof input?.deviationThreshold !== 'number') throw ValidationError('deviationThreshold')
     this.deviationThreshold = input.deviationThreshold
 
-    if (typeof input?.data !== 'object' || Array.isArray(input?.data) || input?.data === null)
+    if (!(typeof input?.data === 'object' && !Array.isArray(input?.data) && input?.data !== null))
       throw ValidationError('data')
-    this.data = input.data
+    this.data = input.data as Record<string, unknown>
 
     if (!Array.isArray(input?.nodes)) throw ValidationError('nodes')
-    this.nodes = input.nodes.map((node: any) => new FeedNode(node))
+    this.nodes = input.nodes.map((node: unknown) => new FeedNode(node))
 
     if (typeof input?.precision !== 'number') throw ValidationError('precision')
     this.precision = input.precision
@@ -59,6 +63,9 @@ export class ReferenceContractConfig {
   }
 }
 
+// FeedNode is the shape of reference data for a single node operator on a single data feed.
+// The dataProviders are the data providers (usually 1-to-1 with adapters) being used by the
+// node operator for a given feed.
 export class FeedNode {
   name: string
   address: string
@@ -69,7 +76,7 @@ export class FeedNode {
     }
 
     if (typeof input?.name !== 'string') throw ValidationError('name')
-    this.name = input.name
+    else this.name = input.name
 
     if (typeof input?.address !== 'string') throw ValidationError('address')
     this.address = input.address
@@ -85,7 +92,7 @@ export class FeedNode {
 
 export interface ConfigPayload {
   name: string
-  data: Record<string, any>
+  data: Record<string, unknown>
 }
 
 export interface K6Payload {
@@ -302,7 +309,6 @@ export const removeAdapterFromFeed = (
  * @param {ConfigPayload[]} referenceConfig The configuration to convert to a k6 compatible payload
  * @returns {K6Payload[]} The k6 compatible payload
  */
-
 export const convertConfigToK6Payload = (referenceConfig: ConfigPayload[]): K6Payload[] => {
   const id = randomUUID()
 
