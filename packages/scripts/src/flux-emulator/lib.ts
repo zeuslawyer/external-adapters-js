@@ -249,7 +249,7 @@ export const writeK6Payload = async (inputs: Inputs): Promise<void> => {
 
   logInfo('Writing k6 payload to a file')
   // write the payloads to a file in the k6 folder for the docker container to pick up
-  fs.writeFileSync('./packages/k6/src/config/http.json', JSON.stringify(payloads))
+  fs.writeFileSync('./packages/k6/src/http.json', JSON.stringify(payloads))
 }
 
 export const main = async (): Promise<void> => {
