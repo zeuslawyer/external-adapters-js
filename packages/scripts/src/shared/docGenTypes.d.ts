@@ -60,4 +60,12 @@ export type Schema = {
   description?: string
   properties?: EnvVars
   required?: string[]
+  allOf?: (
+    | {
+        $ref: string
+      }
+    | {
+        anyOf: { required: string[] }[]
+      }
+  )[]
 }
