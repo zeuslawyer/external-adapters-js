@@ -80,7 +80,7 @@ export const options = {
   thresholds: {
     http_req_failed: [
       {
-        threshold: 'rate<0.1', // http errors should be less than 1%
+        threshold: 'rate<0.01', // http errors should be less than 1%
         abortOnFail: true,
       },
     ],
@@ -92,7 +92,7 @@ export const options = {
     ],
     checks: [
       {
-        threshold: 'rate>0.75', // 99% of the extra checks should be successful
+        threshold: 'rate>0.99', // 99% of the extra checks should be successful
         abortOnFail: true,
       },
     ],
