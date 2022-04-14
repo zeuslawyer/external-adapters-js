@@ -138,14 +138,9 @@ const valueWithinRange = (val: JSONValue): boolean => {
   return 0 < numVal && numVal < 10_000_000_000_000
 }
 
-let k = 0
 export default (): void => {
   const before = new Date().getTime()
   const config = requests[(vu.idInTest - 1) % uniqueRequests]
-  k++
-  console.log('-----')
-  console.log(config.body)
-  console.log('-------')
   const response = http.post(adapterUrl, config.body, config.params)
   if (response.status !== 200)
     console.log(`!!!ERROR REQUEST: ${config.body} RESPONSE: ${response.status}`)
