@@ -180,12 +180,6 @@
     "data": "{\"data\":{\"from\":\"BORING\",\"to\":\"USD\"}}"
   },
   {
-    "name": "BTC / USD",
-    "id": "f34eb43b-0c94-4fda-94e2-48a6a8d45179",
-    "method": "POST",
-    "data": "{\"data\":{\"endpoint\":\"crypto\",\"from\":\"BTC\",\"overrides\":{\"coingecko\":{\"BTC\":\"bitcoin\"}},\"to\":\"USD\"}}"
-  },
-  {
     "name": "BTM / USD",
     "id": "f34eb43b-0c94-4fda-94e2-48a6a8d45179",
     "method": "POST",
@@ -328,12 +322,6 @@
     "id": "f34eb43b-0c94-4fda-94e2-48a6a8d45179",
     "method": "POST",
     "data": "{\"data\":{\"from\":\"ETH\",\"to\":\"BTC\"}}"
-  },
-  {
-    "name": "ETH / USD",
-    "id": "f34eb43b-0c94-4fda-94e2-48a6a8d45179",
-    "method": "POST",
-    "data": "{\"data\":{\"endpoint\":\"crypto\",\"from\":\"ETH\",\"overrides\":{\"coingecko\":{\"ETH\":\"ethereum\"}},\"to\":\"USD\"}}"
   },
   {
     "name": "EURT / USD",

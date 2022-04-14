@@ -86,7 +86,7 @@ export const options = {
     ],
     http_req_duration: [
       {
-        threshold: 'p(99)<2000', // 99% of request durations should be below 2s
+        threshold: 'p(90)<1000', // 99% of request durations should be below 2s
         abortOnFail: true,
       },
     ],
