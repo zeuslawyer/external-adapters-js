@@ -146,6 +146,7 @@ export default (): void => {
   const response = http.post(adapterUrl, config.body, config.params)
   if (response.status !== 200)
     console.log(`!!!ERROR REQUEST: ${config.body} RESPONSE: ${response.status}`)
+  else console.log('Good request fulfilled')
   const after = new Date().getTime()
   const diff = (after - before) / 1000
   const remainder = T - diff
