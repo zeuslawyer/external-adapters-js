@@ -86,7 +86,7 @@ export const options = {
     ],
     http_req_duration: [
       {
-        threshold: 'p(90)<1000', // 99% of request durations should be below 2s
+        threshold: 'p(90)<1000', // 90% of request durations should be below 2s
         abortOnFail: true,
       },
     ],
@@ -98,7 +98,7 @@ export const options = {
     ],
   },
   stages: [
-    { duration: '1m', target: Math.min(uniqueRequests, VU / 10) }, // 5m warmup from 0 to min(uniqueRequests, VU/10)
+    { duration: '1m', target: Math.min(uniqueRequests, VU / 10) }, // 1m warmup from 0 to min(uniqueRequests, VU/10)
     // Do `scaleupDuration` duration of scaling up to (VU/10)*currentStage, then run that stage for `testDuration`
     { duration: scaleupDuration, target: VU / 10 },
     { duration: testDuration, target: VU / 10 },
@@ -141,12 +141,14 @@ const valueWithinRange = (val: JSONValue): boolean => {
 let k = 0
 export default (): void => {
   const before = new Date().getTime()
-  const config = requests[k % uniqueRequests]
+  const config = requests[(vu.idInTest - 1) % uniqueRequests]
   k++
+  console.log('-----')
+  console.log(config.body)
+  console.log('-------')
   const response = http.post(adapterUrl, config.body, config.params)
   if (response.status !== 200)
     console.log(`!!!ERROR REQUEST: ${config.body} RESPONSE: ${response.status}`)
-  else console.log('Good request fulfilled')
   const after = new Date().getTime()
   const diff = (after - before) / 1000
   const remainder = T - diff
