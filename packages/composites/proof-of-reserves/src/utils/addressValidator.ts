@@ -54,7 +54,7 @@ const getValidEvmAddress = (address: string): string | undefined => {
 }
 
 /*
- * Returns a Bitcoin address with a valid format or logs a warning and returns undefined
+ * Returns a P2PKH, P2SH or bech32 Bitcoin address with a valid format or logs a warning and returns undefined
  */
 const getValidBtcAddress = (address: string): string | undefined => {
   const addressPrefix = address[0]
