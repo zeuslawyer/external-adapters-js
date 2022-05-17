@@ -23,7 +23,7 @@ const throwError = (msg: string): never => {
 }
 
 export const ACTIONS: string[] = ['start', 'stop', 'k6payload']
-export const WEIWATCHER_SERVER = 'https://weiwatchers.com/flux-emulator-mainnet.json'
+export const WEIWATCHER_SERVER = 'https://weiwatchers.smartcontract.com/flux-emulator-mainnet.json'
 export const CONFIG_SERVER = 'https://adapters.qa.stage.cldev.sh/fluxconfig'
 export const FLUX_CONFIG_INPUTS: ephemeralAdapters.Inputs = {
   action: 'start',
