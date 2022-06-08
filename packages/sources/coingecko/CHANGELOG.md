@@ -1,5 +1,13 @@
 # @chainlink/coingecko-adapter
 
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies [fb75088f2]
+  - @chainlink/ea-bootstrap@2.8.1
+  - @chainlink/ea-test-helpers@1.2.0
+
 ## 1.7.1
 
 ### Patch Changes

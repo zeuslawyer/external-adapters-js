@@ -1,5 +1,11 @@
 # @chainlink/ea-bootstrap
 
+## 2.8.1
+
+### Patch Changes
+
+- fb75088f2: clean all redux state after server shutdown
+
 ## 2.8.0
 
 ### Minor Changes

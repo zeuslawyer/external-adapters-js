@@ -1,5 +1,13 @@
 # @chainlink/celsius-address-list-adapter
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [fb75088f2]
+  - @chainlink/ea-bootstrap@2.8.1
+  - @chainlink/ea-test-helpers@1.2.0
+
 ## 1.0.18
 
 ### Patch Changes
