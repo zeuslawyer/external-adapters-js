@@ -42,6 +42,7 @@ jobs:
   publish-artifacts:
     needs: [matrix-adapters]
     runs-on: ubuntu-latest
+    environment: release
     name: (${{ matrix.adapter.type }}) Publish ${{ matrix.adapter.name }} adapter Docker image
     strategy:
       matrix: ${{fromJson(needs.matrix-adapters.outputs.matrix)}}
